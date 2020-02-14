@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "desenv",
+            "dialect": "PostgreSQL",
+            "name": "ArquiteturaPostgres - Desenv",
+            "password": "sdpdd02",
+            "port": 5432,
+            "server": "mangostao.sede.embrapa.br",
+            "username": "arquitetura_acesso_d"
+        }
+    ]
+}

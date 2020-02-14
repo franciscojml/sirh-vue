@@ -1,0 +1,314 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API referente aos resources disponíveis para manipulação das informações do SIRH",
+    "version" : "1.0.0",
+    "title" : "Documentação da API do SIRH",
+    "contact" : {
+      "email" : "francisco.lima@embapa.br"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "dadoscadastrais",
+    "description" : "Operações disponíveis para manipulação dos dados cadastrais (pessoal) do empregado"
+  } ],
+  "paths" : {
+    "/api/dadoscadastrais" : {
+      "get" : {
+        "tags" : [ "dadoscadastrais" ],
+        "summary" : "Consulta de dados cadastrais do empregado",
+        "description" : "Retorna uma lista de dados cadastrais paginado de 10 registros por página\n",
+        "operationId" : "searchDadosCadastrais",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Número da página a ser recuperada",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Um array contendo os dados cadastrais do empregado",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "dadoscadastrais" : {
+      "type" : "object",
+      "required" : [ "AFASCODI", "AGENCFUN", "BANCOFUN", "CARTESTA", "CARTNUME", "CARTSERI", "CIDNUME", "CIDORGAO", "CIDUNFED", "CONTAFUN", "CPFFUNC", "DATAADIM", "DDDFUNC", "ENDBAIF", "ENDCEPF", "ENDCIDF", "ENDESTF", "ENDRUAF", "ESTACIVI", "INSTNIVE", "INSTSITU", "JORNADA", "LOTATUAL", "MATRICA", "NACIONA", "NATURCID", "NATURUF", "NOMEFUNC", "NOMEMAE", "NOMEPAI", "NUMTITEL", "SECTITEL", "SEGPGTO", "SEXOFUN", "SP_MATRICA", "SUBLOTATUAL", "TELEFUNC", "TIPOCONT", "VOTITEL1", "VOTITEL2", "ZONTITEL" ],
+      "properties" : {
+        "MATRICA" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Matrícula do empregado"
+        },
+        "TIPOCONT" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Tipo de contrato"
+        },
+        "NOMEFUNC" : {
+          "type" : "string",
+          "description" : "Nome do empregado",
+          "maxLength" : 35
+        },
+        "DATANASC" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "Data de nascimento"
+        },
+        "NATURCID" : {
+          "type" : "string",
+          "description" : "Cidade de nascimento",
+          "maxLength" : 25
+        },
+        "NATURUF" : {
+          "type" : "string",
+          "description" : "UF de naturalidade",
+          "maxLength" : 2
+        },
+        "NACIONA" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Sigla do País de nascionalidade"
+        },
+        "ESTACIVI" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Estado civil"
+        },
+        "SEXOFUN" : {
+          "type" : "string",
+          "description" : "Sexo (M - Masculino, F - Feminino)",
+          "maxLength" : 1
+        },
+        "CIDNUME" : {
+          "type" : "string",
+          "description" : "Número da carteira de identidade",
+          "maxLength" : 15
+        },
+        "CIDORGAO" : {
+          "type" : "string",
+          "description" : "Órgão expedidor da carteira de identidade",
+          "maxLength" : 3
+        },
+        "CIDUNFED" : {
+          "type" : "string",
+          "description" : "UF da carteira de identidade",
+          "maxLength" : 2
+        },
+        "CIDDATA" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "Data de expedição da carteira de identidade"
+        },
+        "CPFFUNC" : {
+          "type" : "string",
+          "description" : "número do CPF",
+          "maxLength" : 11
+        },
+        "NUMTITEL" : {
+          "type" : "string",
+          "description" : "Número do título de eleitor",
+          "maxLength" : 15
+        },
+        "ZONTITEL" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Zona do título de eleitor"
+        },
+        "SECTITEL" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Seção do título de eleitor"
+        },
+        "VOTITEL1" : {
+          "type" : "string",
+          "description" : "Indicativo de votação do 1º turno (S - Sim, N - Não)",
+          "maxLength" : 1
+        },
+        "VOTITEL2" : {
+          "type" : "string",
+          "description" : "Indicativo de votação do 2º turno (S - Sim, N - Não)",
+          "maxLength" : 1
+        },
+        "NOMEPAI" : {
+          "type" : "string",
+          "description" : "Nome do pai",
+          "maxLength" : 35
+        },
+        "NOMEMAE" : {
+          "type" : "string",
+          "description" : "Nome da mãe",
+          "maxLength" : 35
+        },
+        "ENDRUAF" : {
+          "type" : "string",
+          "description" : "Rua do endereço",
+          "maxLength" : 45
+        },
+        "ENDBAIF" : {
+          "type" : "string",
+          "description" : "Bairro do endereço",
+          "maxLength" : 30
+        },
+        "ENDCIDF" : {
+          "type" : "string",
+          "description" : "Cidade do endereço",
+          "maxLength" : 40
+        },
+        "ENDESTF" : {
+          "type" : "string",
+          "description" : "Estado do endereço",
+          "maxLength" : 2
+        },
+        "ENDCEPF" : {
+          "type" : "string",
+          "description" : "CEP do endereço",
+          "maxLength" : 22
+        },
+        "DDDFUNC" : {
+          "type" : "string",
+          "description" : "DDD do telefone",
+          "maxLength" : 4
+        },
+        "TELEFUNC" : {
+          "type" : "string",
+          "description" : "Número do telefone",
+          "maxLength" : 10
+        },
+        "INSTNIVE" : {
+          "type" : "string",
+          "description" : "Nível de grau de instrução",
+          "maxLength" : 22
+        },
+        "INSTSITU" : {
+          "type" : "string",
+          "description" : "Situação do grau de instrução",
+          "maxLength" : 22
+        },
+        "DATAADIM" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "Data de admissão"
+        },
+        "LOTATUAL" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Unidade da Embrapa de lotação atual"
+        },
+        "SUBLOTATUAL" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Sub-unidade da Embrapa de lotação atual"
+        },
+        "JORNADA" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Jornada de trabalho em horas"
+        },
+        "CARTNUME" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Número da carteira de trabalho"
+        },
+        "CARTESTA" : {
+          "type" : "string",
+          "description" : "UF da carteira de trabalho",
+          "maxLength" : 2
+        },
+        "CARTSERI" : {
+          "type" : "string",
+          "description" : "Série da carteira de trabalho",
+          "maxLength" : 3
+        },
+        "CARTDATA" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "Data da carteira de trabalho"
+        },
+        "BANCOFUN" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Banco para depósito salarial"
+        },
+        "AGENCFUN" : {
+          "type" : "string",
+          "description" : "Agência para depósito salarial",
+          "maxLength" : 5
+        },
+        "CONTAFUN" : {
+          "type" : "string",
+          "description" : "Conta corrente para depósito salarial",
+          "maxLength" : 11
+        },
+        "AFASCODI" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Código de afastamento atual"
+        },
+        "AFASINIC" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "Data de início de afastamento atual"
+        },
+        "AFASTERM" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "Data de término de afastamento atual"
+        },
+        "SEGPGTO" : {
+          "type" : "number",
+          "format" : "float",
+          "description" : "Percentagem de recibo seguro"
+        },
+        "SP_MATRICA" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Matrícula do empregado no SIAP"
+        }
+      }
+    },
+    "inline_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/dadoscadastrais"
+          }
+        },
+        "count" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "total de registros"
+        },
+        "limit" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "total de páginas"
+        }
+      }
+    }
+  }
+}
