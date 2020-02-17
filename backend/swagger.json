@@ -21,7 +21,7 @@
       "get" : {
         "tags" : [ "dadoscadastrais" ],
         "summary" : "Consulta de dados cadastrais do empregado",
-        "description" : "Retorna uma lista de dados cadastrais paginado de 10 registros por página\n",
+        "description" : "Retorna uma lista contendo as informações de dados cadastrais dos empregados paginado de 10 registros por página\n",
         "operationId" : "searchDadosCadastrais",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
@@ -40,7 +40,32 @@
             }
           },
           "400" : {
-            "description" : "bad input parameter"
+            "description" : "Erro na entrada de parâmetros"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "dadoscadastrais" ],
+        "summary" : "Inclusão da informações de dados cadastrais do empregado",
+        "description" : "Retorna uma lista contendo as informações de dados cadastrais dos empregados paginado de 10 registros por página\n",
+        "operationId" : "saveDadosCadastrais",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Payload",
+          "description" : "Request Body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/dadoscadastrais"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Registro criado com sucesso!"
+          },
+          "500" : {
+            "description" : "Erro na execução da operação!"
           }
         }
       }
