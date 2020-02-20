@@ -1,22 +1,21 @@
 module.exports = app => {
-    const { existsOrError, notExistsOrError } = app.api.validation
+    const { existsOrError, notExistsOrError, equalsOrError } = app.api.validation
 
     const limit = 10 // usado para paginação
 
     const get = async (req, res) => {
         const page = req.query.page || 1
 
-        const result = await app.db('SIRH.SRHTB002').count('MATRICA as total')
+        const result = await app.db('SIRH.SRHTB002').count('NU_CPF_ESTAGIARIO as total')
         const count = parseInt(result[0].total)
 
-        app.db('SIRH.SRHTB002')
-            .orderBy('NOMEFUNC', 'asc')
+        app.db('SIRH.SRHTB290')
+            .orderBy('NM_ESTAGIARIO', 'asc')
             .limit(limit).offset(page * limit - limit)
-            .then(empregado => res.json({ data: empregado, count, limit }))
-            .catch(err => res.status(500).send(err))
+            .then(estagiario => res.json({ data: estagiario, count, limit }))
+            .catch(err => res.status(500).send(err.stack))
     }
 
-    
    const save = async (req, res) => {
         const dadoscadastrais = { ...req.body }
 
@@ -26,20 +25,21 @@ module.exports = app => {
             res.status(400).send(msg)
         }
 
-        const dc = await app.db('SIRH.SRHTB002')
-                            .where({ MATRICA: dadoscadastrais.matrica }).first()
+        const dc = await app.db('SIRH.SRHTB002').where({ MATRICA: dadoscadastrais.MATRICA }).first()
                             
         if(dc) {
+            console.log('up')
             app.db('SIRH.SRHTB002')
                 .update(dadoscadastrais)
-                .where({ MATRICA: dadoscadastrais.matrica })
+                .where({ MATRICA: dadoscadastrais.MATRICA })
                 .then(_ => res.status(204).send())
-                .catch(err => res.status(500).send(err))
+                .catch(err => res.status(500).send(err.stack))
         } else {
+            console.log('add')
             app.db('SIRH.SRHTB002')
                 .insert(dadoscadastrais)
                 .then(_ => res.status(204).send())
-                .catch(err => res.status(500).send(err))
+                .catch(err => res.status(500).send(err.stack))
         }
     }
 
@@ -82,11 +82,8 @@ module.exports = app => {
         existsOrError(obj.BANCOFUN, 'Banco não informado')
         existsOrError(obj.AGENCFUN, 'Agência não informado')
         existsOrError(obj.CONTAFUN, 'Conta Corrente não informado')
-        existsOrError(obj.AFASCODI, 'Código de Afastamento não informado')
-        existsOrError(obj.SEGPGTO, 'Percentagem de Recibo do Seguro não informado')
         existsOrError(obj.SP_MATRICA, 'Matrícula do SIAPI não informado')
     }
-
 
     return { get, save }
 }

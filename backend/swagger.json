@@ -288,7 +288,8 @@
         "AFASCODI" : {
           "type" : "integer",
           "format" : "int32",
-          "description" : "Código de afastamento atual"
+          "description" : "Código de afastamento atual",
+          "default": "0"
         },
         "AFASINIC" : {
           "type" : "string",
@@ -305,7 +306,8 @@
         "SEGPGTO" : {
           "type" : "number",
           "format" : "float",
-          "description" : "Percentagem de recibo seguro"
+          "description" : "Percentagem de recibo seguro",
+          "default": "0"
         },
         "SP_MATRICA" : {
           "type" : "integer",
