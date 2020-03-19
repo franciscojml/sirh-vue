@@ -1,13 +1,35 @@
 const { authSecret } = require('../.env')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
+const activedirectory = require('activedirectory')
 
 module.exports = app => {
-    const signin = async (req, res) => {
-        if (!req.body.email || !req.body.password) {
+    const signin = (req, res) => {
+        /*if (!req.body.email || !req.body.password) {
             return res.status(400).send('Informe usuário e senha!')
-        }
+        }*/
 
+        var config = { url: 'ldap-balancer.sede.embrapa.br:389',
+               baseDN: 'cn=sistemas,ou=sistemas,dc=embrapa,dc=br',
+               username: 'cn=ocomon10,ou=sistemas,dc=embrapa,dc=br',
+               password: 'oco2010' }
+        var ad = new activedirectory(config);
+        
+        ad.authenticate('fjlima', 'F23r2901$', function(err, auth) {
+            if (err) {
+              console.log('ERROR: '+JSON.stringify(err));
+              return;
+            }
+            
+            if (auth) {
+              console.log('Authenticated!');
+            }
+            else {
+              console.log('Authentication failed!');
+            }
+          });
+
+        /*
         const user = await app.db('users')
             .where({ email: req.body.email })
             .first()
@@ -31,7 +53,9 @@ module.exports = app => {
         res.json({
             ...payload,
             token: jwt.encode(payload, authSecret)
-        })
+        })*/
+
+        res.json('ok')
     }
 
     const validateToken = async (req, res) => {
