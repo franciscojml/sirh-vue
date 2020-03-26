@@ -1,16 +1,18 @@
 const { authSecret } = require('../.env')
 const jwt = require('jwt-simple')
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt');
 const activedirectory = require('activedirectory')
 
 module.exports = app => {
+
+    
     const signin = (req, res) => {
         /*if (!req.body.email || !req.body.password) {
             return res.status(400).send('Informe usuário e senha!')
         }*/
 
-        var config = { url: 'ldap-balancer.sede.embrapa.br:389',
-               baseDN: 'cn=sistemas,ou=sistemas,dc=embrapa,dc=br',
+        var config = { url: 'ldap://ldap-balancer.sede.embrapa.br:636',
+               baseDN: 'dc=embrapa,dc=br',
                username: 'cn=ocomon10,ou=sistemas,dc=embrapa,dc=br',
                password: 'oco2010' }
         var ad = new activedirectory(config);
