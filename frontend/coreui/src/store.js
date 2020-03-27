@@ -4,7 +4,8 @@ Vue.use(Vuex)
 
 const state = {
   sidebarShow: 'responsive',
-  sidebarMinimize: false
+  sidebarMinimize: false,
+  user: null
 }
 
 const mutations = {
@@ -18,6 +19,16 @@ const mutations = {
   },
   set (state, [variable, value]) {
     state[variable] = value
+  },
+  setUser(state, user) {
+    state.user = user
+    if(user) {
+        axios.defaults.headers.common['Authorization'] = `bearer ${user.token}`
+        state.sidebarShow = true
+    } else {
+        delete axios.defaults.headers.common['Authorization']
+        state.sidebarShow = false
+    }
   }
 }
 

@@ -23,9 +23,24 @@ module.exports = app => {
     });
   };
 
-  passport.use(new LdapStrategy(getLDAPConfiguration,
+  const getADConfiguration = function (req, callback) {
+    process.nextTick(function () {
+      var opts = {
+        server: {
+          url: 'ldap://embrapa.net:389',
+          bindDn: `cn=${req.body.username},OU=Pessoas,OU=SGE,OU=SEDE,OU=Centro-Oeste,DC=embrapa,DC=net`,
+          bindCredentials: `${req.body.password}`,
+          searchBase: 'OU=Pessoas,OU=SGE,OU=SEDE,OU=Centro-Oeste,DC=embrapa,DC=net',
+          searchFilter: `cn=${req.body.username}`,
+          reconnect: true
+        }
+      };
+      callback(null, opts);
+    });
+  };
+
+  passport.use(new LdapStrategy(getADConfiguration,
     function (user, done) {
-      console.log("LDAP user ", user.displayName, "is logged in.")
       return done(null, user);
     }))
 
@@ -52,6 +67,7 @@ module.exports = app => {
 
           const now = Math.floor(Date.now() / 1000)
 
+          /*LDAP
           const payload = {
             id: user.employeeNumber,
             name: user.cn,
@@ -59,6 +75,18 @@ module.exports = app => {
             login: user.uid,
             tipoPessoa: user.employeeType,
             departamento: user.departmentNumber,
+            iat: now,
+            exp: now + (60 * 60 * 24 * 3)
+          }
+          */
+
+          const payload = {
+            matricula: user.employeeNumber,
+            id: user.employeeID,
+            email: user.mail,
+            login: user.cn,
+            departamento: user.departament,
+            displayName: user.displayName,
             iat: now,
             exp: now + (60 * 60 * 24 * 3)
           }
