@@ -19,65 +19,9 @@ consign()
 
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  var getLDAPConfiguration = function (req, callback) {
-    process.nextTick(function () {
-      var opts = {
-        server: {
-          url: 'ldap://ldap-balancer.sede.embrapa.br',
-          bindDn: `uid=${req.body.username},ou=Pessoas,ou=SGE,ou=SEDE,ou=Centro-Oeste,dc=embrapa,dc=br`,
-          bindCredentials: `${req.body.password}`,
-          searchBase: 'ou=Pessoas,ou=SGE,ou=SEDE,ou=Centro-Oeste,dc=embrapa,dc=br',
-          searchFilter: `uid=${req.body.username}`,
-          reconnect: true
-        }
-      };
-      callback(null, opts);
-    });
-  };
-  
-  passport.use(new LdapStrategy(getLDAPConfiguration,
-    function (user, done) {
-      //winston.info("LDAP user ", user.displayName, "is logged in.")
-      console.log("LDAP user ", user.displayName, "is logged in.")
-      return done(null, user);
-    }))
 
-    passport.serializeUser(function (user, done) {
-      done(null, user.uid)
-    })
-    passport.deserializeUser(function (id, done) {
-      User.findOne({ uid: id }).exec()
-        .then(user => {
-          if (!user) {
-            done(new Error(`Cannot find user with uid=${id}`))
-          } else {
-            done(null, user)
-          }
-        })
-    })
-
-
-    passport.myLogin = function (req, res, next) {
-      passport.authenticate('ldapauth', function (err, user, info) {
-        if (err) {
-          return next(err)
-        }
-        if (!user) {
-          res.status(401).json({ success: false, message: 'authentication failed' })
-        } else {
-          req.login(user, loginErr => {
-            if (loginErr) {
-              return next(loginErr);
-            }
-            User.findOneAndUpdate({uid: user.uid}, user, {upsert: true, new: true}).exec().then(user=> {
-              return res.json({ success: true, message: 'authentication succeeded', user: Object.assign({name: user.uid}, user) });
-            })
-          });
-        }
-      })(req, res, next)
-    }
-
-    app.post('/login', passport.myLogin)
+  app.use(passport.initialize());
+  app.post('/login', passport.login) 
 app.listen(3000, () => {
    console.log('Backend executando...')
 })
