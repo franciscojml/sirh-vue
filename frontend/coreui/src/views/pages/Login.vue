@@ -53,7 +53,7 @@ export default {
         login() {
             axios.post(`${baseApiUrl}/login`, this.user)
                 .then(res => {
-                    console.log('post')
+                    console.log(res)
                     this.$store.commit('setUser', res.data)
                     localStorage.setItem(userKey, JSON.stringify(res.data))
                     this.$router.push({ path: '/' })

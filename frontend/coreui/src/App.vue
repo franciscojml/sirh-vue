@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <router-view>
+	  <font-awesome-icon icon="user-secret" />
+  </router-view>
 </template>
 
 <script>
