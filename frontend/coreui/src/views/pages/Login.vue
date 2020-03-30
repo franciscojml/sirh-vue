@@ -7,14 +7,17 @@
             <CCardBody>
               <CForm>
                 <h1>Login</h1>
-                <p class="text-muted">Sign In to your account</p>
+                <p class="text-muted">Autenticar na sua conta</p>
                 <CInput
+                  v-model="user.username"
                   placeholder="Username"
-                  autocomplete="username email"
+                  autocomplete="username"
+                  type="text"
                 >
                   <template #prepend-content><CIcon name="cil-user"/></template>
                 </CInput>
                 <CInput
+                  v-model="user.password"
                   placeholder="Password"
                   type="password"
                   autocomplete="curent-password"
@@ -23,30 +26,11 @@
                 </CInput>
                 <CRow>
                   <CCol col="6" class="text-left">
-                    <CButton color="primary" class="px-4">Login</CButton>
-                  </CCol>
-                  <CCol col="6" class="text-right">
-                    <CButton color="link" class="px-0">Forgot password?</CButton>
-                    <CButton color="link" class="d-md-none">Register now!</CButton>
+                    <CButton color="primary" class="px-4" @click="login">Login</CButton>
                   </CCol>
                 </CRow>
               </CForm>
             </CCardBody>
-          </CCard>
-          <CCard
-            color="primary"
-            text-color="white"
-            class="text-center py-5 d-sm-down-none"
-            body-wrapper
-          >
-            <h2>Sign up</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <CButton
-              color="primary"
-              class="active mt-3"
-            >
-              Register Now!
-            </CButton>
           </CCard>
         </CCardGroup>
       </CCol>
@@ -55,7 +39,27 @@
 </template>
 
 <script>
+import { baseApiUrl, showError, userKey } from '@/global'
+import axios from 'axios'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+  data: function() {
+        return {            
+            user: {}
+        }
+    },
+    methods: {
+        login() {
+            axios.post(`${baseApiUrl}/login`, this.user)
+                .then(res => {
+                    console.log('post')
+                    this.$store.commit('setUser', res.data)
+                    localStorage.setItem(userKey, JSON.stringify(res.data))
+                    this.$router.push({ path: '/' })
+                })
+                .catch(showError)
+        }
+    }
 }
 </script>

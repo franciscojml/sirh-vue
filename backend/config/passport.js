@@ -39,7 +39,7 @@ module.exports = app => {
     });
   };
 
-  passport.use(new LdapStrategy(getADConfiguration,
+  passport.use(new LdapStrategy(getLDAPConfiguration,
     function (user, done) {
       return done(null, user);
     }))
@@ -67,7 +67,7 @@ module.exports = app => {
 
           const now = Math.floor(Date.now() / 1000)
 
-          /*LDAP
+          /*LDAP*/
           const payload = {
             id: user.employeeNumber,
             name: user.cn,
@@ -78,9 +78,9 @@ module.exports = app => {
             iat: now,
             exp: now + (60 * 60 * 24 * 3)
           }
-          */
+          
 
-          const payload = {
+         /* const payload = {
             matricula: user.employeeNumber,
             id: user.employeeID,
             email: user.mail,
@@ -90,7 +90,7 @@ module.exports = app => {
             iat: now,
             exp: now + (60 * 60 * 24 * 3)
           }
-
+*/
           res.json({
             success: true,
             message: 'authentication succeeded',

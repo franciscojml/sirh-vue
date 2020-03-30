@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "activedirectory": "^0.7.2",
+    "algorithmia": "^0.3.10",
     "bcrypt": "^4.0.1",
     "body-parser": "1.18.3",
     "consign": "0.1.6",

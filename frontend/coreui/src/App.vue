@@ -14,7 +14,7 @@ export default {
 		return {
 			validatingToken: true
 		}
-	},
+	}/*,
 	methods: {
 		async validateToken() {
 			this.validatingToken = true
@@ -47,7 +47,7 @@ export default {
 	},
 	created() {
 		this.validateToken()
-	}
+	}*/
 }
 </script>
 
