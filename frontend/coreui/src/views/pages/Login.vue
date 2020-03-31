@@ -14,7 +14,9 @@
                   autocomplete="username"
                   type="text"
                 >
-                  <template #prepend-content><CIcon name="cil-user"/></template>
+                  <template #prepend-content>
+                    <CIcon name="cil-user" />
+                  </template>
                 </CInput>
                 <CInput
                   v-model="user.password"
@@ -22,7 +24,9 @@
                   type="password"
                   autocomplete="curent-password"
                 >
-                  <template #prepend-content><CIcon name="cil-lock-locked"/></template>
+                  <template #prepend-content>
+                    <CIcon name="cil-lock-locked" />
+                  </template>
                 </CInput>
                 <CRow>
                   <CCol col="6" class="text-left">
@@ -39,27 +43,27 @@
 </template>
 
 <script>
-import { baseApiUrl, showError, userKey } from '@/global'
-import axios from 'axios'
+import { baseApiUrl, showError, userKey } from "@/global";
+import axios from "axios";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data: function() {
-        return {            
-            user: {}
-        }
-    },
-    methods: {
-        login() {
-            axios.post(`${baseApiUrl}/login`, this.user)
-                .then(res => {
-                    console.log(res)
-                    this.$store.commit('setUser', res.data)
-                    localStorage.setItem(userKey, JSON.stringify(res.data))
-                    this.$router.push({ path: '/' })
-                })
-                .catch(showError)
-        }
+    return {
+      user: {}
+    };
+  },
+  methods: {
+    login() {
+      axios
+        .post(`${baseApiUrl}/login`, this.user)
+        .then(res => {
+          this.$store.commit("setUser", res.data);
+          localStorage.setItem(userKey, JSON.stringify(res.data));
+          this.$router.push({ path: "/" });
+        })
+        .catch(showError);
     }
-}
+  }
+};
 </script>

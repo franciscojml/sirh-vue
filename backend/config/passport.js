@@ -54,16 +54,12 @@ module.exports = app => {
 
   passport.login = function (req, res, next) {
     passport.authenticate('ldapauth', function (err, user, info) {
-      console.log(err)
-      console.log(info)
       if (err) {
-        console.log('erro')
         return next(err)
       }
 
       if (!user) {
-        console.log('sem usuario')
-        return res.status(401).json({ success: false, message: 'authentication failed' })
+        return res.status(401).json({ success: false, message: 'Falha na autenticação: usuário/senha inválidos!' })
       } else {
         console.log('else login')
         req.login(user, loginErr => {
@@ -99,7 +95,7 @@ module.exports = app => {
 */
           res.json({
             success: true,
-            message: 'authentication succeeded',
+            message: 'autenticação realizada com sucesso',
             user: {...payload},
             token: jwt.encode(payload, authSecret)
           })

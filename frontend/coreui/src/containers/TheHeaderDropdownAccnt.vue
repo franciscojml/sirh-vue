@@ -1,17 +1,9 @@
 <template>
-  <CDropdown
-    inNav
-    class="c-header-nav-items"
-    placement="bottom-end"
-    add-menu-classes="pt-0"
-  >
+  <CDropdown inNav class="c-header-nav-items" placement="bottom-end" add-menu-classes="pt-0">
     <template #toggler>
       <CHeaderNavLink>
         <div class="c-avatar">
-          <img
-            src="img/avatars/6.jpg"
-            class="c-avatar-img "
-          />
+          <img :src="urlPhotoProfile ? urlPhotoProfile : 'img/avatars/6.jpg'" class="c-avatar-img" />
         </div>
       </CHeaderNavLink>
     </template>
@@ -19,65 +11,78 @@
       <strong>Account</strong>
     </CDropdownHeader>
     <CDropdownItem>
-      <CIcon name="cil-bell"/> Updates
+      <CIcon name="cil-bell" />Updates
       <CBadge color="info" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-envelope-open" /> Messages
+      <CIcon name="cil-envelope-open" />Messages
       <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-task" /> Tasks
+      <CIcon name="cil-task" />Tasks
       <CBadge color="danger" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-comment-square" /> Comments
+      <CIcon name="cil-comment-square" />Comments
       <CBadge color="warning" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
-    <CDropdownHeader
-      tag="div"
-      class="text-center"
-      color="light"
-    >
+    <CDropdownHeader tag="div" class="text-center" color="light">
       <strong>Settings</strong>
     </CDropdownHeader>
     <CDropdownItem>
-      <CIcon name="cil-user" /> Profile
+      <CIcon name="cil-user" />Profile
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-settings" /> Settings
+      <CIcon name="cil-settings" />Settings
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-dollar" /> Payments
+      <CIcon name="cil-dollar" />Payments
       <CBadge color="secondary" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-file" /> Projects
+      <CIcon name="cil-file" />Projects
       <CBadge color="primary" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
-    <CDropdownDivider/>
+    <CDropdownDivider />
     <CDropdownItem>
-      <CIcon name="cil-shield-alt" /> Lock Account
+      <CIcon name="cil-shield-alt" />Lock Account
     </CDropdownItem>
     <CDropdownItem>
-      <CIcon name="cil-lock-locked" /> Logout
+      <CIcon name="cil-lock-locked" />Logout
     </CDropdownItem>
   </CDropdown>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: 'TheHeaderDropdownAccnt',
-  data () {
-    return { 
-      itemsCount: 42
+  name: "TheHeaderDropdownAccnt",
+  data() {
+    return {
+      itemsCount: 42,
+      urlPhotoProfile: null
+    };
+  },
+  methods: {
+    getPhotoProfile() {
+      axios
+        .get(
+          `https://www.embrapa.br/api/jsonws/web-service-empregado-portlet.empregado/get-url-foto?matricula=333709`
+        )
+        .then(res => {
+          console.log(res.data);
+          this.urlPhotoProfile = res.data;
+        });
     }
+  },
+  created() {
+    this.getPhotoProfile();
   }
-}
+};
 </script>
 
 <style scoped>
-  .c-icon {
-    margin-right: 0.3rem;
-  }
+.c-icon {
+  margin-right: 0.3rem;
+}
 </style>
