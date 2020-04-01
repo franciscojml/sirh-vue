@@ -61,7 +61,6 @@ module.exports = app => {
       if (!user) {
         return res.status(401).json({ success: false, message: 'Falha na autenticação: usuário/senha inválidos!' })
       } else {
-        console.log('else login')
         req.login(user, loginErr => {
           if (loginErr) {
             return next(loginErr);

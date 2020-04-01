@@ -65,14 +65,10 @@ export default {
   },
   methods: {
     getPhotoProfile() {
-      axios
-        .get(
-          `https://www.embrapa.br/api/jsonws/web-service-empregado-portlet.empregado/get-url-foto?matricula=333709`
-        )
-        .then(res => {
-          console.log(res.data);
-          this.urlPhotoProfile = res.data;
-        });
+      const url = `https://www.embrapa.br/api/jsonws/web-service-empregado-portlet.empregado/get-url-foto?matricula=333709`;
+      axios.get(url).then(res => {
+        this.urlPhotoProfile = res.data;
+      });
     }
   },
   created() {
