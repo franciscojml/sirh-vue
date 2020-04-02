@@ -6,6 +6,6 @@ module.exports = app => {
         .get(app.api.empregado.get)
     //.put(app.api.dadoscadastrais.save)
 
-    app.route('/api/dashboard/photoProfile')
-        .get(app.api.dashboard.getPhotoProfile)
+    app.route('/api/dashboard/urlPhotoProfile')
+        .get(app.api.dashboard.getUrlPhotoProfile)
 }

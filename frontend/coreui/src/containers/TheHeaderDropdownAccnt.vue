@@ -55,6 +55,7 @@
 
 <script>
 import axios from "axios";
+import { baseApiUrl, showError, userKey } from "@/global";
 export default {
   name: "TheHeaderDropdownAccnt",
   data() {
@@ -65,13 +66,15 @@ export default {
   },
   methods: {
     getPhotoProfile() {
-      const url = `https://www.embrapa.br/api/jsonws/web-service-empregado-portlet.empregado/get-url-foto?matricula=333709`;
+      const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile`
       axios.get(url).then(res => {
-        this.urlPhotoProfile = res.data;
+        this.urlPhotoProfile = res.data.url;
+        console.log(this.urlPhotoProfile)
       });
     }
   },
   created() {
+    console.log('create')
     this.getPhotoProfile();
   }
 };
