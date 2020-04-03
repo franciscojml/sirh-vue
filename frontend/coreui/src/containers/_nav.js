@@ -14,6 +14,23 @@ export default [
       },
       {
         _name: 'CSidebarNavTitle',
+        _children: ['Dados Cadastrais']
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Empregados',
+        to: '/dadoscadastrais/empregado',
+        icon: 'cil-drop'
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Typography',
+        to: '/theme/typography',
+        icon: 'cil-pencil'
+      },
+
+      {
+        _name: 'CSidebarNavTitle',
         _children: ['Theme']
       },
       {

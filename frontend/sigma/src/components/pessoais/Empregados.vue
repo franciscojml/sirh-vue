@@ -42,7 +42,9 @@
                 :modal="true"
               >
                 <Card style="margin-bottom: 1em">
-                  <template slot="title" ><h1>Meus dados</h1></template>
+                  <template slot="title">
+                    <h1>Meus dados</h1>
+                  </template>
                   <template slot="content">
                     <div class="p-grid">
                       <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
@@ -51,7 +53,10 @@
                         </div>
                       </div>
                       <div class="p-col p-col-12 p-md-6 p-lg-4">
-                        <div class="box" style="text-decoration: overline;">{{slotProps.data.MATRICA}}</div>
+                        <div
+                          class="box"
+                          style="text-decoration: overline;"
+                        >{{slotProps.data.MATRICA}}</div>
                       </div>
                     </div>
                     <div class="p-grid">
@@ -119,94 +124,94 @@
                 <Card>
                   <template slot="title">Naturalidade</template>
                   <template slot="content">
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Cidade de nascimento:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.NATURCID}}</div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Cidade de nascimento:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>UF de naturalidade:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.NATURUF}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.NATURCID}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>UF de naturalidade:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Sigla do País de nascionalidade:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.NACIONA}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.NATURUF}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Sigla do País de nascionalidade:</strong>
                         </div>
                       </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.NACIONA}}</div>
+                      </div>
+                    </div>
                   </template>
                 </Card>
                 <Card>
                   <template slot="title">Endereço</template>
                   <template slot="content">
-                      <div class="p-grid">
-                          <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                            <div class="box">
-                              <strong>Rua do endereço:</strong>
-                            </div>
-                          </div>
-                          <div class="p-col p-col-12 p-md-6 p-lg-4">
-                            <div class="box">{{slotProps.data.ENDRUAF}}</div>
-                          </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Rua do endereço:</strong>
                         </div>
-                        <div class="p-grid">
-                          <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                            <div class="box">
-                              <strong>Bairro do endereço:</strong>
-                            </div>
-                          </div>
-                          <div class="p-col p-col-12 p-md-6 p-lg-4">
-                            <div class="box">{{slotProps.data.ENDBAIF}}</div>
-                          </div>
+                      </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.ENDRUAF}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Bairro do endereço:</strong>
                         </div>
-                        <div class="p-grid">
-                          <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                            <div class="box">
-                              <strong>Cidade do endereço:</strong>
-                            </div>
-                          </div>
-                          <div class="p-col p-col-12 p-md-6 p-lg-4">
-                            <div class="box">{{slotProps.data.ENDCIDF}}</div>
-                          </div>
+                      </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.ENDBAIF}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Cidade do endereço:</strong>
                         </div>
-                        <div class="p-grid">
-                          <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                            <div class="box">
-                              <strong>Estado do endereço:</strong>
-                            </div>
-                          </div>
-                          <div class="p-col p-col-12 p-md-6 p-lg-4">
-                            <div class="box">{{slotProps.data.ENDESTF}}</div>
-                          </div>
+                      </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.ENDCIDF}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Estado do endereço:</strong>
                         </div>
-                        <div class="p-grid">
-                          <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                            <div class="box">
-                              <strong>CEP do endereço:</strong>
-                            </div>
-                          </div>
-                          <div class="p-col p-col-12 p-md-6 p-lg-4">
-                            <div class="box">{{slotProps.data.ENDCEPF}}</div>
-                          </div>
+                      </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.ENDESTF}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>CEP do endereço:</strong>
                         </div>
+                      </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.ENDCEPF}}</div>
+                      </div>
+                    </div>
                   </template>
                 </Card>
-                 <Card>
+                <Card>
                   <template slot="title">Contato</template>
                   <template slot="content">
                     <div class="p-grid">
@@ -234,111 +239,111 @@
                 <Card>
                   <template slot="title">Documentaçao</template>
                   <template slot="content">
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Número da carteira de identidade:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.CIDNUME}}</div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Número da carteira de identidade:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Órgão expedidor da carteira de identidade:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.CIDORGAO}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.CIDNUME}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Órgão expedidor da carteira de identidade:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>UF da carteira de identidade:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.CIDUNFED}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.CIDORGAO}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>UF da carteira de identidade:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Data de expedição da carteira de identidade:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.CIDDATA}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.CIDUNFED}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Data de expedição da carteira de identidade:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>CPF:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.CPFFUNC}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.CIDDATA}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>CPF:</strong>
                         </div>
                       </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.CPFFUNC}}</div>
+                      </div>
+                    </div>
                   </template>
                 </Card>
                 <Card>
                   <template slot="title">Título de Eleitor</template>
                   <template slot="content">
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Número do título de eleitor:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.NUMTITEL}}</div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Número do título de eleitor:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Zona do título de eleitor:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.ZONTITEL}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.NUMTITEL}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Zona do título de eleitor:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Seção do título de eleitor:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.SECTITEL}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.ZONTITEL}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Seção do título de eleitor:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Indicativo de votação do 1º turno:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.VOTITEL1}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.SECTITEL}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Indicativo de votação do 1º turno:</strong>
                         </div>
                       </div>
-                      <div class="p-grid">
-                        <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
-                          <div class="box">
-                            <strong>Indicativo de votação do 2º turno:</strong>
-                          </div>
-                        </div>
-                        <div class="p-col p-col-12 p-md-6 p-lg-4">
-                          <div class="box">{{slotProps.data.VOTITEL2}}</div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.VOTITEL1}}</div>
+                      </div>
+                    </div>
+                    <div class="p-grid">
+                      <div class="p-col-fixed p-col-12 p-md-6 p-lg-4">
+                        <div class="box">
+                          <strong>Indicativo de votação do 2º turno:</strong>
                         </div>
                       </div>
+                      <div class="p-col p-col-12 p-md-6 p-lg-4">
+                        <div class="box">{{slotProps.data.VOTITEL2}}</div>
+                      </div>
+                    </div>
                   </template>
                 </Card>
                 <Card>
@@ -510,7 +515,7 @@
                       </div>
                     </div>
                   </template>
-                </Card>                
+                </Card>
                 <Card>
                   <template slot="title">Bancários</template>
                   <template slot="content">
@@ -545,7 +550,7 @@
                       </div>
                     </div>
                   </template>
-                </Card>               
+                </Card>
               </Dialog>
             </template>
           </Column>

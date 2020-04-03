@@ -69,12 +69,10 @@ export default {
       const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile`
       axios.get(url).then(res => {
         this.urlPhotoProfile = res.data.url;
-        console.log(this.urlPhotoProfile)
       });
     }
   },
   created() {
-    console.log('create')
     this.getPhotoProfile();
   }
 };
