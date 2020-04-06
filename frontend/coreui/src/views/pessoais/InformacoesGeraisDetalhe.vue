@@ -47,7 +47,7 @@ export default {
     },
     caption: {
       type: String,
-      default: "Table"
+      default: "TESTE"
     },
     hover: Boolean,
     striped: Boolean,
