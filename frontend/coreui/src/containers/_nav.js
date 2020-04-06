@@ -14,12 +14,12 @@ export default [
       },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['Dados Cadastrais']
+        _children: ['Pessoais']
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'Empregados',
-        to: '/dadoscadastrais/empregado',
+        name: 'Informações Gerais',
+        to: '/pessoais/informacoesGerais',
         icon: 'cil-drop'
       },
       {

@@ -7,7 +7,7 @@ const TheContainer = () => import('@/containers/TheContainer')
 // Views
 const Login = () => import('@/views/pages/Login')
 const Dashboard = () => import('@/views/Dashboard')
-const Empregado = () => import('@/views/dadoscadastrais/Empregado')
+const InformacoesGerais = () => import('@/views/pessoais/InformacoesGerais')
 
 const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
@@ -82,17 +82,17 @@ function configRoutes() {
           component: Dashboard
         },
         {
-          path: 'dadoscadastrais',
-          redirect: '/dadoscadastrais/empregado',
-          name: 'Dados Cadastrais',
+          path: 'pessoais',
+          redirect: '/pessoais/informacoesGerais',
+          name: 'Pessoais',
           component: {
             render(c) { return c('router-view') }
           },
           children: [
             {
-              path: 'empregado',
-              name: 'Empregado',
-              component: Empregado
+              path: 'informacoesGerais',
+              name: 'Informações Gerais',
+              component: InformacoesGerais
             },
             {
               path: 'typography',
