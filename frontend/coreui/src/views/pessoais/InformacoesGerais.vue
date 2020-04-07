@@ -7,19 +7,23 @@
             <CDataTable
               :items="items"
               :fields="fields"
+              :noItemsView="{ noResults: 'Nenhum resultado disponível para a consulta', noItems: 'Nenhum resultado disponível' }"
+              :items-per-page="limit"
+              :activePage="page"
+              pagination
               column-filter
               table-filter
-              items-per-page-select
-              :items-per-page="5"
               sorter
               responsive
-              :noItemsView="{ noResults: 'Nenhum resultado disponível para a consulta', noItems: 'Nenhum resultado disponível' }"
-              pagination
+              hover
+              bordered
+              small
+              fixed
             >
               <template #show_details="{item, index}">
                 <td class="py-2">
                   <CButton
-                    color="primary"
+                    color="info"
                     variant="outline"
                     square
                     size="sm"
@@ -29,10 +33,23 @@
               </template>
               <template #details="{item}">
                 <CCollapse :show="Boolean(item._toggled)" :duration="collapseDuration">
-                  <CCardBody></CCardBody>
+                  <CCardBody>
+                    <CForm inline>
+                      <CInput class="mr-2" :value="item.MATRICA">
+                        <template #label>
+                          <small>Matrícula:&nbsp;</small>
+                        </template>
+                      </CInput>
+                      <CInput :value="item.NOMEFUNC">
+                        <template #label>
+                          <small>Nome:&nbsp;</small>
+                        </template>
+                      </CInput>
+                    </CForm>
+                  </CCardBody>
                 </CCollapse>
               </template>
-            </CDataTable>
+            </CDataTable>            
           </CCardBody>
         </CCard>
       </CCol>
@@ -63,6 +80,8 @@ export default {
   data: function() {
     return {
       page: 1,
+      limit: 0,
+      count: 0,
       items: [],
       fields,
       details: [],
@@ -84,6 +103,8 @@ export default {
         this.items = res.data.data.map((item, id) => {
           return { ...item, id };
         });
+        this.count = res.data.count;
+        this.limit = res.data.limit;
       });
     }
   },
