@@ -1,7 +1,7 @@
 module.exports = app => {
     const { existsOrError, notExistsOrError, equalsOrError } = app.api.validation
 
-    const limit = 10 // usado para paginação
+    const limit = 20 // usado para paginação
 
     const get = async (req, res) => {
         const page = req.query.page || 1

@@ -8,9 +8,8 @@
               :items="items"
               :fields="fields"
               :noItemsView="{ noResults: 'Nenhum resultado disponível para a consulta', noItems: 'Nenhum resultado disponível' }"
-              :items-per-page="limit"
+              :pagination="{pages:'15', align:'center', size:'sm'}"
               :activePage="page"
-              pagination
               column-filter
               table-filter
               sorter
@@ -79,7 +78,7 @@ export default {
   name: "InformacoesGerais",
   data: function() {
     return {
-      page: 1,
+      page: 2,
       limit: 0,
       count: 0,
       items: [],
@@ -98,7 +97,7 @@ export default {
     },
     loadInformacoesGerais() {
       const url = `${baseApiUrl}/api/dadoscadastrais?page=${this.page}`;
-
+      console.log(this.page)
       axios.get(url).then(res => {
         this.items = res.data.data.map((item, id) => {
           return { ...item, id };
