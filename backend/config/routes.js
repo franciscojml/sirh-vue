@@ -2,8 +2,8 @@ const admin = require('./admin')
 
 module.exports = app => {
 
-    app.route('/api/dadoscadastrais')
-        .get(app.api.empregado.get)
+    app.route('/api/pessoais/informacoesgerais')
+        .get(app.api.empregado.getInformacoesGerais)
     //.put(app.api.dadoscadastrais.save)
 
     app.route('/api/dashboard/urlPhotoProfile')

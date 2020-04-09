@@ -2,53 +2,43 @@
   <div>
     <CRow>
       <CCol sm="12">
-        <CCard>
+        <CCard class="p-5">
           <CCardBody>
             <CDataTable
-              :items="items"
+              :items="loadedItems"
               :fields="fields"
-              :noItemsView="{ noResults: 'Nenhum resultado disponível para a consulta', noItems: 'Nenhum resultado disponível' }"
-              :pagination="{pages:'15', align:'center', size:'sm'}"
-              :activePage="page"
-              column-filter
-              table-filter
-              sorter
-              responsive
+              :column-filter-value="columnFilterValue"
+              :table-filter="{ external: true, lazy: true }"
+              :table-filter-value.sync="tableFilterValue"
+              :sorter="{ external: true, resetable: true }"
+              :sorter-value.sync="sorterValue"
+              :items-per-page="10"
+              :active-page="1"
               hover
-              bordered
-              small
-              fixed
-            >
-              <template #show_details="{item, index}">
-                <td class="py-2">
-                  <CButton
-                    color="info"
-                    variant="outline"
-                    square
-                    size="sm"
-                    @click="toggleDetails(item, index)"
-                  >{{Boolean(item._toggled) ? 'Ocultar' : 'Detalhes'}}</CButton>
-                </td>
-              </template>
-              <template #details="{item}">
-                <CCollapse :show="Boolean(item._toggled)" :duration="collapseDuration">
-                  <CCardBody>
-                    <CForm inline>
-                      <CInput class="mr-2" :value="item.MATRICA">
-                        <template #label>
-                          <small>Matrícula:&nbsp;</small>
-                        </template>
-                      </CInput>
-                      <CInput :value="item.NOMEFUNC">
-                        <template #label>
-                          <small>Nome:&nbsp;</small>
-                        </template>
-                      </CInput>
-                    </CForm>
-                  </CCardBody>
-                </CCollapse>
-              </template>
-            </CDataTable>            
+              :loading="loading"
+            />
+            <CRow alignVertical="center" alignHorizontal="center">
+              <CCol col="12" sm="6" lg="3">
+                <CPagination
+                  v-show="pages > 1"
+                  :pages="pages"
+                  :active-page.sync="activePage"
+                  size="sm"
+                  align="center"
+                />
+              </CCol>
+            </CRow>
+            <CRow alignVertical="center" alignHorizontal="center">
+              <CCol col="12" sm="6" lg="3">
+                <CWidgetIcon
+                  :header="`${totalRecords}`"
+                  text="Total de registros encontrados"
+                  color="primary"
+                >
+                  <CIcon name="cil-people" width="24" />
+                </CWidgetIcon>
+              </CCol>
+            </CRow>
           </CCardBody>
         </CCard>
       </CCol>
@@ -64,52 +54,73 @@ const items = [];
 const fields = [
   { key: "MATRICA", label: "Matrícula", _style: "width:10%" },
   { key: "NOMEFUNC", label: "Nome" },
-  { key: "CPFFUNC", label: "N. CPF", _style: "width:20%;" },
-  {
-    key: "show_details",
-    label: "",
-    _style: "width:1%",
-    sorter: false,
-    filter: false
-  }
+  { key: "CPFFUNC", label: "N. CPF", _style: "width:20%;" }
 ];
 
 export default {
   name: "InformacoesGerais",
   data: function() {
     return {
-      page: 2,
-      limit: 0,
-      count: 0,
-      items: [],
+      sorterValue: { column: 'NOMEFUNC', asc: true },
+      columnFilterValue: {},
+      tableFilterValue: "",
+      activePage: 1,
+      loadedItems: [],
+      loading: false,
       fields,
-      details: [],
-      collapseDuration: 0
+      pages: 5,
+      totalRecords: 0
     };
   },
+  watch: {
+    tableState() {
+      this.onTableChange();
+    }
+  },
+  computed: {
+    tableState() {
+      return [
+        this.sorterValue,
+        this.columnFilterValue,
+        this.tableFilterValue,
+        this.activePage
+      ];
+    }
+  },
   methods: {
-    toggleDetails(item) {
-      this.$set(this.items[item.id], "_toggled", !item._toggled);
-      this.collapseDuration = 300;
-      this.$nextTick(() => {
-        this.collapseDuration = 0;
-      });
-    },
-    loadInformacoesGerais() {
-      const url = `${baseApiUrl}/api/dadoscadastrais?page=${this.page}`;
-      console.log(this.page)
+    onTableChange() {
+      this.loading = true;
+
+      const sorter =
+        this.sorterValue.column == null
+          ? ""
+          : `&sorterValue=${this.sorterValue}`;
+
+      console.log("sortevalu: " + this.sorterValue.column);
+      console.log("sorteasc: " + this.sorterValue.asc);
+
+      const tableFilter =
+        this.tableFilterValue == null || this.tableFilterValue == ""
+          ? ""
+          : `&tableFilterValue=${this.tableFilterValue}`;
+
+      const url = `${baseApiUrl}/api/pessoais/informacoesgerais?sorterValue=${this.sorterValue}&activePage=${this.activePage}`;
+
+      console.log(url);
       axios.get(url).then(res => {
-        this.items = res.data.data.map((item, id) => {
+        console.log('dentro')
+        this.loadedItems = res.data.data.map((item, id) => {
           return { ...item, id };
         });
-        this.count = res.data.count;
-        this.limit = res.data.limit;
+        
+        this.pages = res.data.pages;
+        this.totalRecords = res.data.totalRecords;
+        this.loading = false;
       });
     }
   },
-  created() {},
   mounted() {
-    this.loadInformacoesGerais();
+    this.onTableChange();
   }
 };
 </script>

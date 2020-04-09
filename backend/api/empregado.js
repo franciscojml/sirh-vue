@@ -1,33 +1,78 @@
 module.exports = app => {
-    const { existsOrError, notExistsOrError, equalsOrError } = app.api.validation
+    const { existsOrError, notExistsOrError, equalsOrError } = app.utils.validation
+    const { isNumeric, isEmpty, isJsonPropColumn } = app.utils.functions
 
-    const limit = 20 // usado para paginação
 
-    const get = async (req, res) => {
-        const page = req.query.page || 1
+    const limit = 10 // usado para paginação
 
-        const result = await app.db('SIRH.SRHTB002').count('MATRICA as total')
-        const count = parseInt(result[0].total)
+    const getInformacoesGerais = async (req, res) => {
+        const activePage = req.query.activePage || 1
+        const sorterValue = req.query.sorterValue
+        const tableFilterValue = req.query.tableFilterValue
+        
+        
+        console.log('a: '+ JSON.stringify(sorterValue))
 
-        app.db('SIRH.SRHTB002')
-            .orderBy('NOMEFUNC', 'asc')
-            .limit(limit).offset(page * limit - limit)
-            .then(empregado => res.json({ data: empregado, count, limit }))
-            .catch(err => res.status(500).send(err.stack))
+        if(sorterValue === '[object Object]') {
+            console.log('ok')
+            console.log('sort co:' + sorterValue.column)
+            console.log('sort asc:' + sorterValue.asc)
+        }
+
+        const sorter = isEmpty(sorterValue) ? ['NOMEFUNC', 'asc'] : [sorterValue.column, sorterValue.asc == 'asc' ? 'asc' : 'desc']
+        console.log('sorter: ' + sorter)
+        console.log('table: ' + tableFilterValue)
+        if (isEmpty(tableFilterValue)) {
+            console.log('1')
+            var model = app.db('SIRH.SRHTB002')
+
+            const totalCount = await model.clone().count({ totalRecords: 'MATRICA' }).first();
+            const totalRecords = parseInt(totalCount.totalRecords)
+            const pages = parseInt(totalRecords / limit)
+
+            console.log('1.1')
+            model.clone()
+                .orderBy('NOMEFUNC', 'asc')
+                .limit(limit).offset(activePage * limit - limit).select()
+                .then(empregado => res.json({ data: empregado, pages, totalRecords }))
+                .catch(err => res.status(500).send(err.stack))
+        } else {
+            console.log('2')
+            var model = app.db('SIRH.SRHTB002')
+                .where((builder) => {
+                    if (isNumeric(tableFilterValue)) {
+                        builder.where('MATRICA', tableFilterValue);
+                        builder.orWhere('CPFFUNC', tableFilterValue);
+                    }
+
+                    if (!isNumeric(tableFilterValue))
+                        builder.orWhere('NOMEFUNC', 'like', `%${tableFilterValue}%`);
+                })
+
+            const totalCount = await model.clone().count({ totalRecords: 'MATRICA' }).first();
+            const totalRecords = parseInt(totalCount.totalRecords)
+            const pages = parseInt(totalRecords / limit)
+
+            model.clone()
+                .orderBy(sorter[0], sorter[1])
+                .limit(limit).offset(activePage * limit - limit)
+                .then(empregado => res.json({ data: empregado, pages, totalRecords }))
+                .catch(err => res.status(500).send(err.stack))
+        }
     }
 
-   const save = async (req, res) => {
+    const save = async (req, res) => {
         const dadoscadastrais = { ...req.body }
 
         try {
             validationCamposObrigatorios(dadoscadastrais)
-        } catch(msg) {
+        } catch (msg) {
             res.status(400).send(msg)
         }
 
         const dc = await app.db('SIRH.SRHTB002').where({ MATRICA: dadoscadastrais.MATRICA }).first()
-                            
-        if(dc) {
+
+        if (dc) {
             console.log('up')
             app.db('SIRH.SRHTB002')
                 .update(dadoscadastrais)
@@ -43,7 +88,7 @@ module.exports = app => {
         }
     }
 
-    function validationCamposObrigatorios(obj){
+    function validationCamposObrigatorios(obj) {
         existsOrError(obj.MATRICA, 'Matrícula não informado')
         existsOrError(obj.TIPOCONT, 'Tipo de Contrato não informado')
         existsOrError(obj.NOMEFUNC, 'Nome não informado')
@@ -85,5 +130,5 @@ module.exports = app => {
         existsOrError(obj.SP_MATRICA, 'Matrícula do SIAPI não informado')
     }
 
-    return { get, save }
+    return { getInformacoesGerais, save }
 }
