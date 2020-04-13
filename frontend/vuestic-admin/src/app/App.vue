@@ -5,8 +5,12 @@
 </template>
 
 <script>
+import { baseApiUrl, userKey } from "@/global"
+import { mapState } from "vuex"
+
 export default {
   name: 'app',
+  computed: mapState(['user']),
   data () {
     return {
       // Temporary config for 2.1.
@@ -14,6 +18,7 @@ export default {
         gradient: true,
         shadow: 'lg', // 3 states: 'sm', 'lg', undefined (no shadow).
         invertedColor: false,
+        validatingToken: true
       },
     }
   },
@@ -33,6 +38,40 @@ export default {
       }
     },
   },
+  /*
+	methods: {
+		async validateToken() {
+			this.validatingToken = true
+
+			const json = localStorage.getItem(userKey)
+			const userData = JSON.parse(json)
+			this.$store.commit('setUser', null)
+
+			if(!userData) {
+				this.validatingToken = false
+				this.$router.push({ name: 'auth' })
+				return
+			}
+
+			const res = await axios.post(`${baseApiUrl}/validateToken`, userData)
+
+			if (res.data) {
+				this.$store.commit('setUser', userData)
+				
+				if(this.$mq === 'xs' || this.$mq === 'sm') {
+					this.$store.commit('toggleMenu', false)
+				}
+			} else {
+				localStorage.removeItem(userKey)
+				this.$router.push({ name: 'auth' })
+			}
+
+			this.validatingToken = false
+		}
+	},
+	created() {
+		this.validateToken()
+	}*/
 }
 </script>
 

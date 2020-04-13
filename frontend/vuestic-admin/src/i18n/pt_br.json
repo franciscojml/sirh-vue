@@ -9,7 +9,8 @@
     "password": "Senha",
     "signUp": "Cadastrar-se",
     "termsOfUse": "Termos de uso.",
-    "welcome": "Bem vindo!"
+    "welcome": "Bem vindo!",
+    "username": "Username"
   },
   "buttons": {
     "advanced": "Icones, Grupos, Dropdowns",

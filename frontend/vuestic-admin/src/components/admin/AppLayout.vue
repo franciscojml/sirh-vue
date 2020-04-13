@@ -75,7 +75,8 @@ export default {
   },
   methods: {
     setTheme (themeName) {
-      const theme = themeName === 'corporate' ? corporateTheme : originalTheme
+      //const theme = themeName === 'corporate' ? corporateTheme : originalTheme
+      const theme = 'corporate' ? corporateTheme : originalTheme
       this.setColors(theme.colors)
       Object.keys(theme.context).forEach((key) => {
         this.contextConfig[key] = theme.context[key]

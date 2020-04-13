@@ -12,6 +12,7 @@ import { VuesticPlugin } from '../services/vuestic-ui/components'
 import '../i18n/index'
 import YmapPlugin from 'vue-yandex-maps'
 import VueClipboard from 'vue-clipboard2'
+import '../app/axios'
 
 import '../metrics'
 import '../registerServiceWorker'

@@ -1,6 +1,9 @@
+import axios from 'axios'
+
 const state = {
   sidebar: {
     opened: false,
+    user: null
   },
   config: {
     palette: {
@@ -20,9 +23,17 @@ const state = {
 }
 
 const mutations = {
-  setLoading (state, isLoading) {
+  setLoading(state, isLoading) {
     state.isLoading = isLoading
   },
+  setUser(state, user) {
+    state.user = user
+    if (user) {
+      axios.defaults.headers.common['Authorization'] = `bearer ${user.token}`
+    } else {
+      delete axios.defaults.headers.common['Authorization']
+    }
+  }
 }
 
 const actions = {
