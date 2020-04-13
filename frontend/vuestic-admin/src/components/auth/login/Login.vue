@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="onsubmit">
+    <Loading v-if="validatingAuth" />
     <va-input
       v-model="user.username"
       type="text"
@@ -25,45 +26,64 @@
 <script>
 import { baseApiUrl, userKey } from "@/global";
 import axios from "axios";
+import Loading from "@/components/ui/spinners/Loading"
 
 export default {
   name: "login",
+  components: { Loading },
   data() {
     return {
+      validatingAuth: false,
       keepLoggedIn: false,
       usernameErrors: [],
       passwordErrors: [],
-      user: {}
+      user: {},
+      toastText: "",
+      toastDuration: 5000,
+      toastIcon: "exclamation-circle",
+      toastPosition: "top-center",
+      isToastFullWidth: false
     };
   },
   computed: {
     formReady() {
       return !this.usernameErrors.length && !this.passwordErrors.length;
+    },
+    isToastContentPresent() {
+      return !!(this.toastText || this.toastIcon);
     }
   },
   methods: {
-    onsubmit() {
+    async onsubmit() {
+      this.validatingAuth = true
       this.usernameErrors = this.user.username ? [] : ["Username is required"];
       this.passwordErrors = this.user.password ? [] : ["Password is required"];
       if (!this.formReady) {
         return;
       }
-      //this.$router.push({ name: "dashboard" });
-      console.log("login");
+
       axios
         .post(`${baseApiUrl}/login`, this.user)
         .then(res => {
-          console.log("entrou:" + JSON.stringify(res.data));
+          
           this.$store.commit("setUser", res.data);
-          console.log("store commit");
           localStorage.setItem(userKey, JSON.stringify(res.data));
-          console.log("localStorage");
           this.$router.push({ name: "dashboard" });
-          console.log("dash");
         })
         .catch(error => {
-          console.log('error: ' + error);
+          this.toastText = error.data.message;
+          this.launchToast();
         });
+
+        this.validatingAuth = false
+    },
+    launchToast() {
+      this.showToast(this.toastText, {
+        icon: this.toastIcon,
+        position: this.toastPosition,
+        duration: this.toastDuration,
+        fullWidth: this.isToastFullWidth
+      });
     }
   }
 };

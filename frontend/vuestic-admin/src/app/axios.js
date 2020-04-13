@@ -9,7 +9,6 @@ axios.interceptors.response
             return response
         },
         error => {
-            console.log('aixos 2: ' + JSON.stringify(error.response.data))
             if (error.response) {
                 switch (error.response.status) {
                     case 401:

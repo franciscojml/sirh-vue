@@ -5,78 +5,74 @@
 </template>
 
 <script>
-import { baseApiUrl, userKey } from "@/global"
-import { mapState } from "vuex"
+import axios from "axios";
+import { baseApiUrl, userKey } from "@/global";
+import { mapState } from "vuex";
 
 export default {
-  name: 'app',
-  computed: mapState(['user']),
-  data () {
+  name: "app",
+  computed: mapState(["user"]),
+  data() {
     return {
       // Temporary config for 2.1.
       contextConfig: {
         gradient: true,
-        shadow: 'lg', // 3 states: 'sm', 'lg', undefined (no shadow).
+        shadow: "lg", // 3 states: 'sm', 'lg', undefined (no shadow).
         invertedColor: false,
         validatingToken: true
-      },
-    }
+      }
+    };
   },
-  provide () {
+  provide() {
     return {
-      contextConfig: this.contextConfig,
-    }
+      contextConfig: this.contextConfig
+    };
   },
   watch: {
     // Temporary colors fix for 2.1.
-    'contextConfig.invertedColor' (val) {
-      const invertedColorClass = 'va-inverted-color'
+    "contextConfig.invertedColor"(val) {
+      const invertedColorClass = "va-inverted-color";
       if (val) {
-        document.body.classList.add(invertedColorClass)
+        document.body.classList.add(invertedColorClass);
       } else {
-        document.body.classList.remove(invertedColorClass)
+        document.body.classList.remove(invertedColorClass);
       }
-    },
+    }
   },
-  /*
-	methods: {
-		async validateToken() {
-			this.validatingToken = true
+  methods: {
+    async validateToken() {
+      this.validatingToken = true;
 
-			const json = localStorage.getItem(userKey)
-			const userData = JSON.parse(json)
-			this.$store.commit('setUser', null)
+      const json = localStorage.getItem(userKey);
+      const userData = JSON.parse(json);
+      this.$store.commit("setUser", null);
 
-			if(!userData) {
-				this.validatingToken = false
-				this.$router.push({ name: 'auth' })
-				return
-			}
+      if (!userData) {
+        this.validatingToken = false;
+        this.$router.push({ name: "login" });
+        return;
+      }
 
-			const res = await axios.post(`${baseApiUrl}/validateToken`, userData)
+      const res = await axios.post(`${baseApiUrl}/validateToken`, userData);
 
-			if (res.data) {
-				this.$store.commit('setUser', userData)
-				
-				if(this.$mq === 'xs' || this.$mq === 'sm') {
-					this.$store.commit('toggleMenu', false)
-				}
-			} else {
-				localStorage.removeItem(userKey)
-				this.$router.push({ name: 'auth' })
-			}
+      if (res.data) {
+        this.$store.commit("setUser", userData);
+      } else {
+        localStorage.removeItem(userKey);
+        this.$router.push({ name: "login" });
+      }
 
-			this.validatingToken = false
-		}
-	},
-	created() {
-		this.validateToken()
-	}*/
-}
+      this.validatingToken = false;
+    }
+  },
+  created() {
+    this.validateToken();
+  }
+};
 </script>
 
 <style lang="scss">
-@import '../sass/main.scss';
+@import "../sass/main.scss";
 
 body {
   height: 100%;

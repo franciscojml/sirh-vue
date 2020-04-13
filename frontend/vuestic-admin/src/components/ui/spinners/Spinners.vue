@@ -128,6 +128,7 @@ export default {
         grouped.push(items.slice(i, i + groupSize))
       }
 
+    console.log('grouped:' + grouped)
       return grouped
     },
   },
