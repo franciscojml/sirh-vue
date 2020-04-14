@@ -53,54 +53,60 @@ module.exports = app => {
   });
 
   passport.login = function (req, res, next) {
-    passport.authenticate('ldapauth', function (err, user, info) {
-      if (err) {
-        return next(err)
-      }
 
-      if (!user) {
-        return res.status(401).json({ success: false, message: 'Falha na autenticação: usuário/senha inválidos!' })
-      } else {
-        req.login(user, loginErr => {
-          if (loginErr) {
-            return next(loginErr);
-          }
+    const timeoutObj = setTimeout(() => {
+      passport.authenticate('ldapauth', function (err, user, info) {
+        if (err) {
+          return next(err)
+        }
 
-          const now = Math.floor(Date.now() / 1000)
+        if (!user) {
+          return res.status(401).json({ success: false, message: 'Falha na autenticação: usuário/senha inválidos!' })
+        } else {
+          req.login(user, loginErr => {
+            if (loginErr) {
+              return next(loginErr);
+            }
 
-          /*LDAP*/
-          const payload = {
-            id: user.employeeNumber,
-            name: user.cn,
-            email: user.mail,
-            login: user.uid,
-            tipoPessoa: user.employeeType,
-            departamento: user.departmentNumber,
-            iat: now,
-            exp: now + (60 * 60 * 24 * 3)
-          }
-          
+            const now = Math.floor(Date.now() / 1000)
 
-         /* const payload = {
-            matricula: user.employeeNumber,
-            id: user.employeeID,
-            email: user.mail,
-            login: user.cn,
-            departamento: user.departament,
-            displayName: user.displayName,
-            iat: now,
-            exp: now + (60 * 60 * 24 * 3)
-          }
-*/
-          res.json({
-            success: true,
-            message: 'autenticação realizada com sucesso',
-            user: {...payload},
-            token: jwt.encode(payload, authSecret)
-          })
-        });
-      }
-    })(req, res, next)
+            /*LDAP*/
+            const payload = {
+              id: user.employeeNumber,
+              name: user.cn,
+              email: user.mail,
+              login: user.uid,
+              tipoPessoa: user.employeeType,
+              departamento: user.departmentNumber,
+              iat: now,
+              exp: now + (60 * 60 * 24 * 3)
+            }
+
+
+            /* const payload = {
+               matricula: user.employeeNumber,
+               id: user.employeeID,
+               email: user.mail,
+               login: user.cn,
+               departamento: user.departament,
+               displayName: user.displayName,
+               iat: now,
+               exp: now + (60 * 60 * 24 * 3)
+             }
+   */
+            res.json({
+              success: true,
+              message: 'autenticação realizada com sucesso',
+              user: { ...payload },
+              token: jwt.encode(payload, authSecret)
+            })
+          });
+        }
+      })(req, res, next)
+    }, 5000);
+
+
+
   }
 
   const params = {

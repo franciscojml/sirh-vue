@@ -1,6 +1,18 @@
 <template>
   <form @submit.prevent="onsubmit">
-    <Loading v-if="validatingAuth" />
+    <div>
+      <va-modal
+        v-model="validatingAuth"
+        :title=" $t('tables.loading') "        
+        noOutsideDismiss
+        noEscDismiss
+        hideDefaultActions
+        maxHeight="90vh"
+        maxWidth="90%"
+      >
+        <Loading />
+      </va-modal>
+    </div>
     <va-input
       v-model="user.username"
       type="text"
@@ -26,7 +38,7 @@
 <script>
 import { baseApiUrl, userKey } from "@/global";
 import axios from "axios";
-import Loading from "@/components/ui/spinners/Loading"
+import Loading from "@/components/ui/spinners/Loading";
 
 export default {
   name: "login",
@@ -34,12 +46,11 @@ export default {
   data() {
     return {
       validatingAuth: false,
-      keepLoggedIn: false,
       usernameErrors: [],
       passwordErrors: [],
       user: {},
       toastText: "",
-      toastDuration: 5000,
+      toastDuration: 3000,
       toastIcon: "exclamation-circle",
       toastPosition: "top-center",
       isToastFullWidth: false
@@ -55,17 +66,16 @@ export default {
   },
   methods: {
     async onsubmit() {
-      this.validatingAuth = true
+      this.validatingAuth = true;
       this.usernameErrors = this.user.username ? [] : ["Username is required"];
       this.passwordErrors = this.user.password ? [] : ["Password is required"];
       if (!this.formReady) {
         return;
       }
 
-      axios
+      await axios
         .post(`${baseApiUrl}/login`, this.user)
         .then(res => {
-          
           this.$store.commit("setUser", res.data);
           localStorage.setItem(userKey, JSON.stringify(res.data));
           this.$router.push({ name: "dashboard" });
@@ -75,7 +85,7 @@ export default {
           this.launchToast();
         });
 
-        this.validatingAuth = false
+      this.validatingAuth = false;
     },
     launchToast() {
       this.showToast(this.toastText, {

@@ -2,7 +2,12 @@
   <div class="spinners">
     <div class="text--center pb-4">
       <div class="flex-center spinner-box">
-        <component :animation-duration="speed" :is="SpringSpinner" :color="spinnersColor" :size="80"></component>
+        <component
+          :animation-duration="speed"
+          :is="SpringSpinner"
+          :color="spinnersColor"
+          :size="40"
+        ></component>
       </div>
     </div>
   </div>
@@ -10,12 +15,12 @@
 
 <script>
 import * as spinners from "epic-spinners";
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   name: "Loading",
   components: {
-    ...spinners,
+    ...spinners
   },
   data() {
     return {
@@ -25,7 +30,7 @@ export default {
         min: 1000,
         max: 2000
       },
-      SpringSpinner: 'SpringSpinner'
+      SpringSpinner: "SpringSpinner"
     };
   },
   computed: {
