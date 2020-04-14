@@ -3,12 +3,12 @@
     <div>
       <va-modal
         v-model="validatingAuth"
-        :title=" $t('tables.loading') "        
+        :title=" $t('tables.loading') "
         noOutsideDismiss
         noEscDismiss
         hideDefaultActions
-        maxHeight="90vh"
-        maxWidth="90%"
+        size="small"
+        position="top"
       >
         <Loading />
       </va-modal>

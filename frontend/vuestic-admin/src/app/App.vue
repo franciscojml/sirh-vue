@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="app">
     <router-view />
+    <Loading v-if="validatingToken" />
   </div>
 </template>
 
@@ -8,9 +9,11 @@
 import axios from "axios";
 import { baseApiUrl, userKey } from "@/global";
 import { mapState } from "vuex";
+import Loading from "@/components/ui/spinners/Loading";
 
 export default {
   name: "app",
+  components: { Loading },
   computed: mapState(["user"]),
   data() {
     return {

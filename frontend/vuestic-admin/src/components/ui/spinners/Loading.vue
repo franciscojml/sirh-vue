@@ -2,12 +2,7 @@
   <div class="spinners">
     <div class="text--center pb-4">
       <div class="flex-center spinner-box">
-        <component
-          :animation-duration="speed"
-          :is="SpringSpinner"
-          :color="spinnersColor"
-          :size="40"
-        ></component>
+        <component :animation-duration="speed" :is="SpringSpinner" :color="spinnersColor"></component>
       </div>
     </div>
   </div>
@@ -71,7 +66,8 @@ export default {
   }
 
   .spinner-box {
-    height: 140px;
+    height: 50px;
+    vertical-align: center;
   }
 }
 </style>
