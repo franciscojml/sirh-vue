@@ -71,14 +71,14 @@ export default new Router({
           default: true,
         },
         {
-          name: 'pages',
-          path: 'pages',
+          name: 'pessoais',
+          path: 'pessoais',
           component: EmptyParentComponent,
           children: [
             {
-              name: '404-pages',
-              path: '404-pages',
-              component: () => import('../components/pages/404-pages/404PagesPage'),
+              name: 'informacoes-gerais',
+              path: 'informacoes-gerais',
+              component: () => import('../views/pessoais/InformacoesGerais'),
             },
           ],
         },

@@ -141,6 +141,7 @@
   },
   "menu": {
     "pessoais": "Pessoais",
+    "informacoesgerais": "Informações Gerais",
     "auth": "Autorização",
     "buttons": "Botões",
     "charts": "Gráficos",
@@ -238,7 +239,9 @@
       "lastName": "Último nome",
       "status": "Status",
       "country": "País"
-    }
+    },
+    "searchInformacoesGerais": "Pesquisa de Informações Gerais",
+    "searchByMatriculaNameCpf": "Procura por nome, matrícula ou CPF"
   },
   "user": {
     "language": "Trocar Linguagem",
@@ -254,5 +257,9 @@
   },
   "chat": {
     "title": "Gráficos"
+  },
+  "comum":{
+    "matricula": "Matrícula",
+    "nome": "Nome"
   }
 }

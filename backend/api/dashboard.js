@@ -3,7 +3,9 @@ const fetch = require('node-fetch');
 module.exports = app => {
 
     const getUrlPhotoProfile = (req, res) => {
-        var url = 'https://embrapa.br/api/jsonws/web-service-empregado-portlet.empregado/get-url-foto?matricula=333709'
+        const id = req.query.id
+
+        var url = `https://embrapa.br/api/jsonws/web-service-empregado-portlet.empregado/get-url-foto?matricula=${id}`
 
         fetch(url)
             .then(res => res.json())

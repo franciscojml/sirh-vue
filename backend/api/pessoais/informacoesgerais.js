@@ -2,42 +2,24 @@ module.exports = app => {
     const { existsOrError, notExistsOrError, equalsOrError } = app.utils.validation
     const { isNumeric, isEmpty, isJsonPropColumn } = app.utils.functions
 
-
-    const limit = 10 // usado para paginação
-
     const getInformacoesGerais = async (req, res) => {
-        const activePage = req.query.activePage || 1
-        const sorterValue = req.query.sorterValue
+        const per_page = req.query.per_page
+        const page = req.query.page
         const tableFilterValue = req.query.tableFilterValue
-        
-        
-        console.log('a: '+ JSON.stringify(sorterValue))
 
-        if(sorterValue === '[object Object]') {
-            console.log('ok')
-            console.log('sort co:' + sorterValue.column)
-            console.log('sort asc:' + sorterValue.asc)
-        }
-
-        const sorter = isEmpty(sorterValue) ? ['NOMEFUNC', 'asc'] : [sorterValue.column, sorterValue.asc == 'asc' ? 'asc' : 'desc']
-        console.log('sorter: ' + sorter)
-        console.log('table: ' + tableFilterValue)
         if (isEmpty(tableFilterValue)) {
-            console.log('1')
             var model = app.db('SIRH.SRHTB002')
 
             const totalCount = await model.clone().count({ totalRecords: 'MATRICA' }).first();
             const totalRecords = parseInt(totalCount.totalRecords)
-            const pages = parseInt(totalRecords / limit)
+            const total_pages = parseInt(totalRecords / per_page)
 
-            console.log('1.1')
             model.clone()
                 .orderBy('NOMEFUNC', 'asc')
-                .limit(limit).offset(activePage * limit - limit).select()
-                .then(empregado => res.json({ data: empregado, pages, totalRecords }))
+                .limit(per_page).offset(page * per_page - per_page).select()
+                .then(empregado => res.json({ data: empregado, total_pages, totalRecords }))
                 .catch(err => res.status(500).send(err.stack))
         } else {
-            console.log('2')
             var model = app.db('SIRH.SRHTB002')
                 .where((builder) => {
                     if (isNumeric(tableFilterValue)) {
@@ -51,12 +33,12 @@ module.exports = app => {
 
             const totalCount = await model.clone().count({ totalRecords: 'MATRICA' }).first();
             const totalRecords = parseInt(totalCount.totalRecords)
-            const pages = parseInt(totalRecords / limit)
+            const total_pages = parseInt(totalRecords / per_page)
 
             model.clone()
-                .orderBy(sorter[0], sorter[1])
-                .limit(limit).offset(activePage * limit - limit)
-                .then(empregado => res.json({ data: empregado, pages, totalRecords }))
+                .orderBy('NOMEFUNC', 'asc')
+                .limit(per_page).offset(page * per_page - per_page)
+                .then(empregado => res.json({ data: empregado, total_pages, totalRecords }))
                 .catch(err => res.status(500).send(err.stack))
         }
     }

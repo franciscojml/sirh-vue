@@ -20,13 +20,9 @@ export const navigationRoutes = {
       disabled: true,
       children: [
         {
-          name: 'form-elements',
-          displayName: 'menu.formElements',
-        },
-        {
-          name: 'medium-editor',
-          displayName: 'menu.mediumEditor',
-        },
+          name: 'informacoes-gerais',
+          displayName: 'menu.informacoesgerais',
+        }
       ],
     },
   ],

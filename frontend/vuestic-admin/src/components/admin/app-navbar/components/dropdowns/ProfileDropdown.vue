@@ -2,7 +2,7 @@
   <va-dropdown class="profile-dropdown" v-model="isShown" boundary-body offset="0, 16px">
     <span class="profile-dropdown__anchor" slot="anchor" :style="{color: this.$themes.primary}">
       <slot />
-      <va-icon class="pa-1" :name="`fa ${isShown ? 'fa-angle-up' :'fa-angle-down'}`" />
+      <!--va-icon class="pa-1" :name="`fa ${isShown ? 'fa-angle-up' :'fa-angle-down'}`" /-->
     </span>
     <div class="profile-dropdown__content pl-4 pr-4 pt-2 pb-2">
       <router-link

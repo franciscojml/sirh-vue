@@ -9,13 +9,9 @@
     /-->
     <language-dropdown class="app-navbar-actions__item" />
     <profile-dropdown class="app-navbar-actions__item app-navbar-actions__item--profile">
-        
-          <va-avatar style="width: 100%; height: auto; border-radius: 50em;">
-            <img
-              :src="urlPhotoProfile ? urlPhotoProfile : 'img/avatars/profile.jpg'"
-              class="c-avatar-img"
-            />
-          </va-avatar>
+      <va-avatar style="width: 30%; height: auto; border-radius: 25em;">
+        <img v-if="urlPhotoProfile" :src="urlPhotoProfile" />
+      </va-avatar>
     </profile-dropdown>
   </div>
 </template>
@@ -70,7 +66,9 @@ export default {
   },
   methods: {
     getPhotoProfile() {
-      const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile`;
+      const json = localStorage.getItem(userKey);
+      const userData = JSON.parse(json);
+      const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile?id=${userData.user.id}`;
       axios.get(url).then(res => {
         this.urlPhotoProfile = res.data.url;
       });
