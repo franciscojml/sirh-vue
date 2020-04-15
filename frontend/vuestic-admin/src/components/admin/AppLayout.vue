@@ -65,9 +65,10 @@ export default {
   inject: ['contextConfig'],
   mixins: [ColorThemeActionsMixin, ColorThemeMixin],
   created () {
-    if (this.$route.query && this.$route.query.theme === 'corporate') {
+    this.setTheme('corporate')
+    /*if (this.$route.query && this.$route.query.theme === 'corporate') {
       this.setTheme('corporate')
-    }
+    }*/
     this.$root.$on('change-theme', this.setTheme)
   },
   beforeDestroy () {
@@ -75,8 +76,7 @@ export default {
   },
   methods: {
     setTheme (themeName) {
-      //const theme = themeName === 'corporate' ? corporateTheme : originalTheme
-      const theme = 'corporate' ? corporateTheme : originalTheme
+      const theme = themeName === 'corporate' ? corporateTheme : originalTheme
       this.setColors(theme.colors)
       Object.keys(theme.context).forEach((key) => {
         this.contextConfig[key] = theme.context[key]

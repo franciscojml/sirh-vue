@@ -1,7 +1,18 @@
 <template>
   <div id="app" class="app">
+    <div>
+      <va-modal
+        v-model="validatingToken"
+        :title=" $t('tables.loading') "
+        noOutsideDismiss
+        noEscDismiss
+        hideDefaultActions
+        size="small"
+      >
+        <Loading />
+      </va-modal>
+    </div>
     <router-view />
-    <Loading v-if="validatingToken" />
   </div>
 </template>
 
@@ -21,9 +32,9 @@ export default {
       contextConfig: {
         gradient: true,
         shadow: "lg", // 3 states: 'sm', 'lg', undefined (no shadow).
-        invertedColor: false,
-        validatingToken: true
-      }
+        invertedColor: false
+      },
+      validatingToken: true
     };
   },
   provide() {

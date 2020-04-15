@@ -1,61 +1,85 @@
 <template>
   <div class="app-navbar-actions">
-    <color-dropdown class="app-navbar-actions__item"/>
+    <!--color-dropdown class="app-navbar-actions__item"/>
     <message-dropdown class="app-navbar-actions__item"/>
     <notification-dropdown class="app-navbar-actions__item"/>
     <settings-dropdown
       :is-top-bar.sync="isTopBarProxy"
       class="app-navbar-actions__item"
-    />
-    <language-dropdown class="app-navbar-actions__item"/>
+    /-->
+    <language-dropdown class="app-navbar-actions__item" />
     <profile-dropdown class="app-navbar-actions__item app-navbar-actions__item--profile">
-      <span>{{userName}}</span>
+        
+          <va-avatar style="width: 100%; height: auto; border-radius: 50em;">
+            <img
+              :src="urlPhotoProfile ? urlPhotoProfile : 'img/avatars/profile.jpg'"
+              class="c-avatar-img"
+            />
+          </va-avatar>
     </profile-dropdown>
   </div>
 </template>
 
 <script>
-import LanguageDropdown from './dropdowns/LanguageDropdown'
-import ProfileDropdown from './dropdowns/ProfileDropdown'
-import NotificationDropdown from './dropdowns/NotificationDropdown'
-import MessageDropdown from './dropdowns/MessageDropdown'
-import ColorDropdown from './dropdowns/ColorDropdown'
-import SettingsDropdown from './dropdowns/SettingsDropdown'
-import { ColorThemeMixin } from '../../../../services/vuestic-ui'
+import LanguageDropdown from "./dropdowns/LanguageDropdown";
+import ProfileDropdown from "./dropdowns/ProfileDropdown";
+import NotificationDropdown from "./dropdowns/NotificationDropdown";
+import MessageDropdown from "./dropdowns/MessageDropdown";
+import ColorDropdown from "./dropdowns/ColorDropdown";
+import SettingsDropdown from "./dropdowns/SettingsDropdown";
+import { ColorThemeMixin } from "../../../../services/vuestic-ui";
+import axios from "axios";
+import { baseApiUrl, showError, userKey } from "@/global";
 
 export default {
-  name: 'app-navbar-actions',
+  name: "app-navbar-actions",
   mixins: [ColorThemeMixin],
-  inject: ['contextConfig'],
+  inject: ["contextConfig"],
   components: {
     SettingsDropdown,
     ColorDropdown,
     MessageDropdown,
     NotificationDropdown,
     LanguageDropdown,
-    ProfileDropdown,
+    ProfileDropdown
   },
   props: {
     userName: {
       type: String,
-      default: '',
+      default: ""
     },
     isTopBar: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
+  },
+  data() {
+    return {
+      urlPhotoProfile: null
+    };
   },
   computed: {
     isTopBarProxy: {
-      get () {
-        return this.isTopBar
+      get() {
+        return this.isTopBar;
       },
-      set (isTopBar) {
-        this.$emit('update:isTopBar', isTopBar)
-      },
-    },
+      set(isTopBar) {
+        this.$emit("update:isTopBar", isTopBar);
+      }
+    }
   },
-}
+  methods: {
+    getPhotoProfile() {
+      const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile`;
+      axios.get(url).then(res => {
+        this.urlPhotoProfile = res.data.url;
+      });
+    }
+  },
+  created() {
+    this.getPhotoProfile();
+  }
+};
 </script>
 
 <style lang="scss">

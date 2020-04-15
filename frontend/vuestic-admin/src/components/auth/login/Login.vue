@@ -8,7 +8,6 @@
         noEscDismiss
         hideDefaultActions
         size="small"
-        position="top"
       >
         <Loading />
       </va-modal>
