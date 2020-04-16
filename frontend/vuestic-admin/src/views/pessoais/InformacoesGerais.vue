@@ -3,9 +3,9 @@
     <div class="row align--center">
       <div class="flex xs12 md6">
         <va-input
-          :value="term"
+          v-model="tableFilterValue"
           :placeholder="$t('tables.searchByMatriculaNameCpf')"
-          @change="search"
+          @change="readItems()"
         >
           <va-icon name="fa fa-search" slot="prepend" />
         </va-input>
@@ -27,7 +27,10 @@
       :totalPages="totalPages"
       @page-selected="readItems"
       api-mode
-    ></va-data-table>
+      hoverable
+    >
+    </va-data-table>
+    total
   </va-card>
 </template>
 
@@ -40,7 +43,6 @@ export default {
   name: "informacoes-gerais",
   data() {
     return {
-      term: null,
       perPage: "10",
       perPageOptions: ["5", "10", "15", "20"],
       totalPages: 0,
@@ -77,22 +79,26 @@ export default {
 
       const url = `${baseApiUrl}/api/pessoais/informacoesgerais`;
 
-      axios
-        .get(url, { params })
-        .then(response => {
-          this.items = response.data.data;
-          this.totalPages = response.data.total_pages;
-          this.loading = false;
-        });
-    },
-    search: debounce(function(term) {
-        console.log('term: ' + term)
-      this.tableFilterValue = term;
-      this.readItems();
-    }, 400)
+      axios.get(url, { params }).then(response => {
+        this.items = response.data.data;
+        this.totalPages = response.data.total_pages;
+        this.loading = false;
+      });
+    }
   },
-  created () {
-    this.readItems()
+  created() {
+    this.readItems();
   }
 };
 </script>
+
+<style lang="scss">
+.va-table td,
+.content table td {
+  font-size: small;
+}
+
+.va-data-table__pagination .va-button--normal {
+  padding: 0.3rem;
+}
+</style>
