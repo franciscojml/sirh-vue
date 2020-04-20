@@ -47,7 +47,7 @@
     <CDropdownItem>
       <CIcon name="cil-shield-alt" />Lock Account
     </CDropdownItem>
-    <CDropdownItem>
+    <CDropdownItem @click="logout()">
       <CIcon name="cil-lock-locked" />Logout
     </CDropdownItem>
   </CDropdown>
@@ -55,9 +55,12 @@
 
 <script>
 import axios from "axios";
-import { baseApiUrl, showError, userKey } from "@/global";
+import { baseApiUrl, userKey } from "@/global";
+import { mapState } from "vuex";
+
 export default {
   name: "TheHeaderDropdownAccnt",
+  computed: mapState(["user"]),
   data() {
     return {
       itemsCount: 42,
@@ -66,10 +69,19 @@ export default {
   },
   methods: {
     getPhotoProfile() {
-      const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile`
-      axios.get(url).then(res => {
-        this.urlPhotoProfile = res.data.url;
-      });
+      const json = localStorage.getItem(userKey);
+      const userData = JSON.parse(json);
+      if (userData != null) {
+        const url = `${baseApiUrl}/api/dashboard/urlPhotoProfile?id=${userData.user.id}`;
+        axios.get(url).then(res => {
+          this.urlPhotoProfile = res.data.url;
+        });
+      }
+    },
+    logout() {
+      localStorage.removeItem(userKey);
+      this.$store.commit("setUser", null);
+      this.$router.push({ name: "Login" });
     }
   },
   created() {

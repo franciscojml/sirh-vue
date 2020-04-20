@@ -1,15 +1,18 @@
 <template>
   <div class="loading">
-    <CSpinner color="info"/>
+    <CSpinner
+      style="width:4rem;height:4rem;"
+      color="900"
+      grow
+    />
   </div>
 </template>
 
 <script>
 export default {
-  name: "Loading"
+  name: "LoadingGrow"
 };
 </script>
-
 
 <style>
 .loading {
