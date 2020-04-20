@@ -1,18 +1,25 @@
 <template>
   <CContainer class="d-flex content-center min-vh-100">
+    <CSpinner color="info" v-if="validatingAuth" />
     <CRow>
       <CCol>
         <CCardGroup>
-          <CCard class="p-4">
-            <CCardBody>
-              <CForm>
+          <CCard>
+            <CForm>
+              <CCardBody>
+                <CAlert color="danger" :show.sync="alert">
+                  <b>{{alertText}}</b>
+                </CAlert>
                 <h1>Login</h1>
                 <p class="text-muted">Autenticar na sua conta</p>
                 <CInput
                   v-model="user.username"
-                  placeholder="Username"
-                  autocomplete="username"
                   type="text"
+                  description="Por favor entre com o seu usuário!"
+                  placeholder="Informe o usuário..."
+                  autocomplete="username"
+                  required
+                  was-validated
                 >
                   <template #prepend-content>
                     <CIcon name="cil-user" />
@@ -20,21 +27,24 @@
                 </CInput>
                 <CInput
                   v-model="user.password"
-                  placeholder="Password"
                   type="password"
-                  autocomplete="curent-password"
+                  description="Por favor entre com a sua senha!"
+                  autocomplete="current-password"
+                  placeholder="Informe a senha..."
+                  required
+                  was-validated
                 >
                   <template #prepend-content>
                     <CIcon name="cil-lock-locked" />
                   </template>
                 </CInput>
                 <CRow>
-                  <CCol col="6" class="text-left">
+                  <CCol class="text-center">
                     <CButton color="primary" class="px-4" @click="login">Login</CButton>
                   </CCol>
                 </CRow>
-              </CForm>
-            </CCardBody>
+              </CCardBody>
+            </CForm>
           </CCard>
         </CCardGroup>
       </CCol>
@@ -43,26 +53,44 @@
 </template>
 
 <script>
-import { baseApiUrl, showError, userKey } from "@/global";
 import axios from "axios";
+import { baseApiUrl, userKey } from "@/global";
+import LoadingGrow from "@/views/components/spinners/LoadingGrow";
 
 export default {
   name: "Login",
+  components: { LoadingGrow },
   data: function() {
     return {
+      alert: false,
+      validatingAuth: false,
+      alertText: "",
       user: {}
     };
   },
   methods: {
     login() {
+      this.validatingAuth = true;
+
       axios
         .post(`${baseApiUrl}/login`, this.user)
         .then(res => {
           this.$store.commit("setUser", res.data);
           localStorage.setItem(userKey, JSON.stringify(res.data));
-          this.$router.push({ path: "/" });
+          this.$router.push({ name: "Dashboard" });
         })
-        .catch(showError);
+        .catch(error => {
+          this.alertText = error.data.message;
+          this.alertMessage();
+        });
+
+      this.validatingAuth = false;
+    },
+    alertMessage() {
+      this.alert = true;
+      const timeout = setTimeout(() => {
+        this.alert = false;
+      }, 1500);
     }
   }
 };
