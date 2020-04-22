@@ -30,7 +30,8 @@
     "lineChart": "Gráfico de Linha",
     "pieChart": "Gráfico Pizza",
     "donutChart": "Gráfico Rosca",
-    "bubbleChart": "Gráfico Bolhas"
+    "bubbleChart": "Gráfico Bolhas",
+    "totalRecords": "Total de registros"
   },
   "dashboard": {
     "success": "SUCESSO",
@@ -141,7 +142,7 @@
   },
   "menu": {
     "pessoais": "Pessoais",
-    "informacoesgerais": "Informações Gerais",
+    "informacoesgerais": "Informações gerais",
     "auth": "Autorização",
     "buttons": "Botões",
     "charts": "Gráficos",
@@ -260,6 +261,9 @@
   },
   "comum":{
     "matricula": "Matrícula",
-    "nome": "Nome"
+    "nome": "Nome",
+    "meusdados":"Meus dados",
+    "nacionalidade": "Nacionalidade",
+    "documentacao": "Documentação"
   }
 }

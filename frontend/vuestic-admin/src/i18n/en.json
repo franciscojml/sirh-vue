@@ -282,6 +282,8 @@
     "persian": "Persian"
   },
   "menu": {
+    "pessoais": "Personal",
+    "informacoesgerais": "General information",
     "auth": "Auth",
     "rating": "Rating",
     "buttons": "Buttons",
@@ -448,7 +450,9 @@
       "status": "Status",
       "country": "Country",
       "location": "Location"
-    }
+    },
+    "searchInformacoesGerais": "General Information Search",
+    "searchByMatriculaNameCpf": "Search by name, registration or CPF"
   },
   "user": {
     "language": "Change Language",
@@ -486,7 +490,8 @@
       "withTitleOnImage": "With title on image",
       "withCustomTitleOnImage": "With custom title on image",
       "withStripe": "With stripe",
-      "withBackground": "With background"
+      "withBackground": "With background",
+      "totalRecords": "Total records"
     },
     "button": {
       "main": "Main",

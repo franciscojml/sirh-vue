@@ -15,7 +15,7 @@ export const navigationRoutes = {
       name: 'pessoais',
       displayName: 'menu.pessoais',
       meta: {
-        iconClass: 'glyphicons glyphicons-plus ',
+        iconClass: 'openwebicons openwebicons-persona',
       },
       disabled: true,
       children: [
