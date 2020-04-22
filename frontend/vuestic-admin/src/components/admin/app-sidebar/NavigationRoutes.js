@@ -15,7 +15,7 @@ export const navigationRoutes = {
       name: 'pessoais',
       displayName: 'menu.pessoais',
       meta: {
-        iconClass: 'vuestic-iconset vuestic-iconset-forms',
+        iconClass: 'glyphicons glyphicons-plus ',
       },
       disabled: true,
       children: [

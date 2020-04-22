@@ -3,40 +3,30 @@
     <CRow>
       <CCol sm="12">
         <CCard class="p-5">
+          <CCardHeader>Pesquisa de Informações Gerais</CCardHeader>
           <CCardBody>
             <CDataTable
               :items="loadedItems"
               :fields="fields"
-              :column-filter-value="columnFilterValue"
-              :table-filter="{ external: true, lazy: true }"
+              :table-filter="{ external: true, lazy: true, placeholder: 'Nome, matrícula ou CPF', label: 'Filtro:' }"
               :table-filter-value.sync="tableFilterValue"
-              :sorter="{ external: true, resetable: true }"
-              :sorter-value.sync="sorterValue"
-              :items-per-page="10"
+              :items-per-page="parseInt(perPage)"
               :active-page="1"
-              hover
               :loading="loading"
+              :items-per-page-select="{external:true, values: perPageOptions, label: 'Itens por página'}"
+              responsive
+              hover
+              striped
             />
             <CRow alignVertical="center" alignHorizontal="center">
               <CCol col="12" sm="6" lg="3">
                 <CPagination
-                  v-show="pages > 1"
-                  :pages="pages"
+                  v-show="totalPages > 1"
+                  :pages="totalPages"
                   :active-page.sync="activePage"
                   size="sm"
                   align="center"
                 />
-              </CCol>
-            </CRow>
-            <CRow alignVertical="center" alignHorizontal="center">
-              <CCol col="12" sm="6" lg="3">
-                <CWidgetIcon
-                  :header="`${totalRecords}`"
-                  text="Total de registros encontrados"
-                  color="primary"
-                >
-                  <CIcon name="cil-people" width="24" />
-                </CWidgetIcon>
               </CCol>
             </CRow>
           </CCardBody>
@@ -61,15 +51,14 @@ export default {
   name: "InformacoesGerais",
   data: function() {
     return {
-      sorterValue: { column: 'NOMEFUNC', asc: true },
-      columnFilterValue: {},
+      perPage: "10",
       tableFilterValue: "",
+      perPageOptions: ["5", "10", "15", "20"],
       activePage: 1,
-      loadedItems: [],
+      totalPages: 0,
       loading: false,
-      fields,
-      pages: 5,
-      totalRecords: 0
+      loadedItems: [],
+      fields
     };
   },
   watch: {
@@ -79,42 +68,27 @@ export default {
   },
   computed: {
     tableState() {
-      return [
-        this.sorterValue,
-        this.columnFilterValue,
-        this.tableFilterValue,
-        this.activePage
-      ];
+      return [this.tableFilterValue, this.activePage, this.perPage];
     }
   },
   methods: {
     onTableChange() {
       this.loading = true;
 
-      const sorter =
-        this.sorterValue.column == null
-          ? ""
-          : `&sorterValue=${this.sorterValue}`;
+      const params = {
+        per_page: this.perPage,
+        page: this.activePage,
+        tableFilterValue: this.tableFilterValue
+      };
 
-      console.log("sortevalu: " + this.sorterValue.column);
-      console.log("sorteasc: " + this.sorterValue.asc);
+      const url = `${baseApiUrl}/api/pessoais/informacoesgerais`;
 
-      const tableFilter =
-        this.tableFilterValue == null || this.tableFilterValue == ""
-          ? ""
-          : `&tableFilterValue=${this.tableFilterValue}`;
-
-      const url = `${baseApiUrl}/api/pessoais/informacoesgerais?sorterValue=${this.sorterValue}&activePage=${this.activePage}`;
-
-      console.log(url);
-      axios.get(url).then(res => {
-        console.log('dentro')
-        this.loadedItems = res.data.data.map((item, id) => {
+      axios.get(url, { params }).then(response => {
+        this.loadedItems = response.data.data.map((item, id) => {
           return { ...item, id };
         });
-        
-        this.pages = res.data.pages;
-        this.totalRecords = res.data.totalRecords;
+
+        this.totalPages = response.data.total_pages;
         this.loading = false;
       });
     }

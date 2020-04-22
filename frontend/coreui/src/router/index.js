@@ -5,7 +5,7 @@ import Router from 'vue-router'
 const TheContainer = () => import('@/containers/TheContainer')
 
 // Views
-const Login = () => import('@/views/pages/Login')
+const Login = () => import('@/auth/login/Login')
 const Dashboard = () => import('@/views/Dashboard')
 const InformacoesGerais = () => import('@/views/pessoais/InformacoesGerais')
 
@@ -49,6 +49,21 @@ function configRoutes() {
             }
           ]
         },
+      ]
+    },
+    {
+      path: '/auth',
+      redirect: '/auth/login/login',
+      name: 'Auth',
+      component: {
+        render(c) { return c('router-view') }
+      },
+      children: [
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login
+        }
       ]
     },
     {
