@@ -78,7 +78,7 @@ export default new Router({
             {
               name: 'informacoes-gerais',
               path: 'informacoes-gerais',
-              component: () => import('../views/pessoais/InformacoesGerais'),
+              component: () => import('../components/views/pessoais/InformacoesGerais'),
             },
           ],
         },

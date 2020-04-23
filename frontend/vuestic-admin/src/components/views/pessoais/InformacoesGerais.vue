@@ -3,7 +3,7 @@
     <div class="flex xs12 md12">
       <div>
         <div class="row">
-          <div class="flex xs6">
+          <div :class="style12 ? 'flex xs12 md12' : 'flex xs12 md6'">
             <div class="grid__container">
               <va-card :title="$t('tables.searchInformacoesGerais')">
                 <div class="row align--center">
@@ -34,10 +34,20 @@
                   @page-selected="readItems"
                   api-mode
                   hoverable
-                ></va-data-table>
+                >
+                  <template slot="actions" slot-scope="props">
+                    <va-button
+                      flat
+                      small
+                      color="gray"
+                      @click="info(props.rowData)"
+                      class="ma-0"
+                    >{{ $t('tables.edit') }}</va-button>
+                  </template>
+                </va-data-table>
                 <div class="flex xs10 md6">
                   <va-card
-                    class="flex xs10 mb-6"
+                    :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'"
                     color="linear-gradient(to right, hsl(196,77%,55%), hsl(211,74%,53%))"
                   >
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
@@ -47,15 +57,20 @@
               </va-card>
             </div>
           </div>
-          <div class="flex xs6">
+          <div class="flex xs6" v-if="!style12">
             <div class="grid__container">
               <va-card>
-                <va-tabs grow v-model="tabsState">
-                  <va-tab>{{$t('comum.meusdados')}}</va-tab>
-                  <va-tab>{{$t('comum.documentacao')}}</va-tab>
+                <va-tabs grow v-model="tabValue">
+                 <va-tab
+                  v-for="title in tabTitles.slice(0,3)"
+                  :key="title"
+                >
+                   {{$t(title)}}
+                </va-tab>
                 </va-tabs>
-                <va-separator/>
-                <component :is="tabs[tabsState]" @submit="submit" />
+                <va-separator />
+                <MeusDadosTab :pessoa="pessoa" v-if="pessoa != null && tabValue == '0'"/>
+                <DocumentacaoTab :pessoa="pessoa" v-if="pessoa != null && tabValue == '1'"/>
               </va-card>
             </div>
           </div>
@@ -69,14 +84,14 @@
 import axios from "axios";
 import { baseApiUrl } from "@/global";
 
-import { MeusDadosTab } from "./MeusDadosTab";
-import { DocumentacaoTab } from "./DocumentacaoTab";
+import MeusDadosTab from "@/components/views/pessoais/MeusDadosTab.vue";
+import DocumentacaoTab from "@/components/views/pessoais/DocumentacaoTab.vue";
 
 export default {
   name: "informacoes-gerais",
   components: {
     MeusDadosTab,
-    DocumentacaoTab,
+    DocumentacaoTab
   },
   data() {
     return {
@@ -88,7 +103,11 @@ export default {
       tableFilterValue: "",
       totalRecords: 0,
       tabsState: 0,
-      tabs: ["MeusDadosTab", "DocumentacaoTab"]
+      tabs: ["MeusDadosTab", "DocumentacaoTab"],
+      pessoa: null,
+      tabValue: 0,
+      tabTitles: ['comum.meusdados', 'comum.documentacao'],
+      style12: true,
     };
   },
   computed: {
@@ -103,6 +122,11 @@ export default {
           name: "NOMEFUNC",
           title: this.$t("comum.nome"),
           width: "70%"
+        },
+        ,
+        {
+          name: "__slot:actions",
+          dataClass: "text-right"
         }
       ];
     },
@@ -133,6 +157,10 @@ export default {
     },
     submit(data) {
       this.$emit("submit", data);
+    },
+    info(pessoa) {
+      this.style12 = false
+      this.pessoa = pessoa
     }
   },
   created() {
@@ -151,3 +179,4 @@ export default {
   padding: 0.3rem;
 }
 </style>
+

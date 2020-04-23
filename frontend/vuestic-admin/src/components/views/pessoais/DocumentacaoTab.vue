@@ -1,8 +1,8 @@
 <template>
-    <div>meus dados</div>
+  <div>docu</div>
 </template>
 <script>
 export default {
-    name: "MeusDadosTab"
-}
+  name: "documentacao-tab"
+};
 </script>
