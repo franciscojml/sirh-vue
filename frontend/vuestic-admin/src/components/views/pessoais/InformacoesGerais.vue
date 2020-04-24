@@ -60,17 +60,10 @@
           <div class="flex xs6" v-if="!style12">
             <div class="grid__container">
               <va-card>
-                <va-tabs grow v-model="tabValue">
-                 <va-tab
-                  v-for="title in tabTitles.slice(0,3)"
-                  :key="title"
-                >
-                   {{$t(title)}}
-                </va-tab>
-                </va-tabs>
-                <va-separator />
-                <MeusDadosTab :pessoa="pessoa" v-if="pessoa != null && tabValue == '0'"/>
-                <DocumentacaoTab :pessoa="pessoa" v-if="pessoa != null && tabValue == '1'"/>
+                <DetalhesInformacoesGerais
+                  :pessoa="pessoa"
+                  v-if="pessoa != null && tabValue == '0'"
+                />
               </va-card>
             </div>
           </div>
@@ -84,14 +77,12 @@
 import axios from "axios";
 import { baseApiUrl } from "@/global";
 
-import MeusDadosTab from "@/components/views/pessoais/MeusDadosTab.vue";
-import DocumentacaoTab from "@/components/views/pessoais/DocumentacaoTab.vue";
+import DetalhesInformacoesGerais from "@/components/views/pessoais/DetalhesInformacoesGerais";
 
 export default {
   name: "informacoes-gerais",
   components: {
-    MeusDadosTab,
-    DocumentacaoTab
+    DetalhesInformacoesGerais
   },
   data() {
     return {
@@ -106,8 +97,8 @@ export default {
       tabs: ["MeusDadosTab", "DocumentacaoTab"],
       pessoa: null,
       tabValue: 0,
-      tabTitles: ['comum.meusdados', 'comum.documentacao'],
-      style12: true,
+      tabTitles: ["comum.meusdados", "comum.documentacao"],
+      style12: true
     };
   },
   computed: {
@@ -159,8 +150,8 @@ export default {
       this.$emit("submit", data);
     },
     info(pessoa) {
-      this.style12 = false
-      this.pessoa = pessoa
+      this.style12 = false;
+      this.pessoa = pessoa;
     }
   },
   created() {

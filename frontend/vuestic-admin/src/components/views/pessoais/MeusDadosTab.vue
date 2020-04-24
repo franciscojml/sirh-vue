@@ -1,10 +1,10 @@
 <template>
   <div class="pt-2">
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
-      <va-separator>
+      <div class="separator">
         <va-icon name="fa fa-user" color="info" rotation="45" size="60" />
         {{$t('dashboard.tabs.bankDetails.detailsFields')}}
-      </va-separator>
+      </div>
     </div>
     <div class="row">
       <div class="flex xs12 md6">
@@ -33,5 +33,11 @@ export default {
 <style lang="scss">
 .va-input__container__input {
   font-size: small;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 </style>
