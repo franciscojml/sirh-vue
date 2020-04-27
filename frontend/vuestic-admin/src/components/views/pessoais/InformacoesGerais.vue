@@ -36,18 +36,20 @@
                   hoverable
                 >
                   <template slot="actions" slot-scope="props">
-                    <va-button
-                      flat
-                      small
-                      color="gray"
-                      @click="info(props.rowData)"
-                      class="ma-0"
-                    >{{ $t('tables.edit') }}</va-button>
+                    <va-popover :message="$t('comum.detalhamento')" placement="top">
+                      <va-button
+                        flat
+                        small
+                        color="gray"
+                        icon="fa fa-info"
+                        @click="info(props.rowData)"
+                      />
+                    </va-popover>
                   </template>
                 </va-data-table>
                 <div class="flex xs10 md6">
                   <va-card
-                    :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'"
+                    :class="style12 ? 'flex xs5 mb-6' : 'flex xs7 mb-6'"
                     color="linear-gradient(to right, hsl(196,77%,55%), hsl(211,74%,53%))"
                   >
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
@@ -60,10 +62,7 @@
           <div class="flex xs6" v-if="!style12">
             <div class="grid__container">
               <va-card>
-                <DetalhesInformacoesGerais
-                  :pessoa="pessoa"
-                  v-if="pessoa != null && tabValue == '0'"
-                />
+                <DetalhesInformacoesGerais :pessoa="pessoa" :fechar="fecharDetalhe" v-if="pessoa != null" />
               </va-card>
             </div>
           </div>
@@ -86,7 +85,7 @@ export default {
   },
   data() {
     return {
-      perPage: "10",
+      perPage: "5",
       perPageOptions: ["5", "10", "15", "20"],
       totalPages: 0,
       loading: false,
@@ -152,6 +151,10 @@ export default {
     info(pessoa) {
       this.style12 = false;
       this.pessoa = pessoa;
+    },
+    fecharDetalhe() {
+      this.style12 = true;
+      this.pessoa = null;
     }
   },
   created() {

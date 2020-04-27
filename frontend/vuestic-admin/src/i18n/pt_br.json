@@ -273,6 +273,7 @@
     "sexo": "Sexo",
     "rg": "RG",
     "orgaoexpedidor": "Órgão experidor",
+    "orgaoexpedidorestado": "Órgão experidor - Estado",
     "dataemissao": "Data de emissão",
     "cpf": "CPF",
     "telefone": "Telefone",
@@ -310,6 +311,8 @@
     "dadosbancarios" : "Dados bancários",
     "informacaocontrato" : "Informações de contrato",
     "contatos": "Contatos",
-    "cidadeestado": "Cidade - Estado"
+    "cidadeestado": "Cidade - Estado",
+    "detalhamento": "Detalhamento",
+    "fechar": "Fechar"
   }
 }

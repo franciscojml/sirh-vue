@@ -1,5 +1,8 @@
 <template>
   <div class="pt-2">
+    <div class="flex-end" style="text-align: right;">
+      <va-button flat color="danger" icon="ion-md-close ion" @click="close()" />
+    </div>
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
       <div class="separator">
         <va-icon name="fa fa-user" color="info" rotation="45" size="60" fixedWidth />
@@ -23,7 +26,55 @@
         <va-input :label="$t('comum.nomepai')" v-model="pessoa.NOMEPAI" />
       </div>
     </div>
-
+    <div class="title text-dark mb-1" :style="{color: $themes.info}">
+      <div class="separator">
+        <va-icon name="fa fa-address-book" color="info" rotation="45" size="60" fixedWidth />
+        {{$t('comum.contatos')}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="flex xs3 md4">
+        <va-input :label="$t('comum.endereco')" v-model="pessoa.ENDRUAF" />
+        <va-input :label="$t('comum.cep')" v-model="pessoa.ENDCEPF" />
+      </div>
+      <div class="flex xs3 md4">
+        <va-input :label="$t('comum.bairro')" v-model="pessoa.ENDBAIF" />
+        <va-input :label="$t('comum.ddd')" v-model="pessoa.DDDFUNC" />
+      </div>
+      <div class="flex xs3 md4">
+        <va-input
+          :label="$t('comum.cidadeestado')"
+          :value="`${pessoa.ENDCIDF} - ${pessoa.ENDESTF}`"
+        />
+        <va-input :label="$t('comum.telefone')" v-model="pessoa.TELEFUNC" />
+      </div>
+    </div>
+    <div class="title text-dark mb-1" :style="{color: $themes.info}">
+      <div class="separator">
+        <va-icon name="fa fa-vcard" color="info" rotation="45" size="60" fixedWidth />
+        {{$t('comum.documentacao')}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="flex xs3 md4">
+        <va-input :label="$t('comum.rg')" v-model="pessoa.CIDNUME" />
+        <va-input :label="$t('comum.cpf')" v-model="pessoa. CPFFUNC" />
+        <va-input :label="$t('comum.secaoeleitoral')" v-model="pessoa.SECTITEL" />
+      </div>
+      <div class="flex xs3 md4">
+        <va-input :label="$t('comum.dataemissao')" :value="pessoa.CIDDATA | formatDate" />
+        <va-input :label="$t('comum.tituloeleitor')" v-model="pessoa.NUMTITEL" />
+        <va-input :label="$t('comum.primeiroturno')" v-model="pessoa.VOTITEL1" />
+      </div>
+      <div class="flex xs3 md4">
+        <va-input
+          :label="$t('comum.orgaoexpedidorestado')"
+          :value="`${pessoa.CIDORGAO} - ${pessoa.CIDUNFED}`"
+        />
+        <va-input :label="$t('comum.zonaeleitoral')" v-model="pessoa.ZONTITEL" />
+        <va-input :label="$t('comum.segundoturno')" v-model="pessoa.VOTITEL2" />
+      </div>
+    </div>
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
       <div class="separator">
         <va-icon name="fa fa-id-card" color="info" rotation="45" size="60" fixedWidth />
@@ -42,25 +93,6 @@
         <va-input :label="$t('comum.data')" :value="pessoa.CARTDATA | formatDate" />
       </div>
     </div>
-
-    <div class="title text-dark mb-1" :style="{color: $themes.info}">
-      <div class="separator">
-        <va-icon name="fa fa-money" color="info" rotation="45" size="60" fixedWidth />
-        {{$t('comum.dadosbancarios')}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex xs3 md4">
-        <va-input :label="$t('comum.banco')" v-model="pessoa.BANCOFUN" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('comum.agencia')" v-model="pessoa.AGENCFUN" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('comum.contacorrente')" v-model="pessoa.CONTAFUN" />
-      </div>
-    </div>
-
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
       <div class="separator">
         <va-icon name="fa fa-id-badge" color="info" rotation="45" size="60" fixedWidth />
@@ -88,49 +120,19 @@
 
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
       <div class="separator">
-        <va-icon name="fa fa-vcard" color="info" rotation="45" size="60" fixedWidth />
-        {{$t('comum.documentacao')}}
+        <va-icon name="fa fa-money" color="info" rotation="45" size="60" fixedWidth />
+        {{$t('comum.dadosbancarios')}}
       </div>
     </div>
     <div class="row">
       <div class="flex xs3 md4">
-        <va-input :label="$t('comum.rg')" v-model="pessoa.CIDNUME" />
-        <va-input :label="$t('comum.cpf')" v-model="pessoa. CPFFUNC" />
-        <va-input :label="$t('comum.secaoeleitoral')" v-model="pessoa.SECTITEL" />
+        <va-input :label="$t('comum.banco')" v-model="pessoa.BANCOFUN" />
       </div>
       <div class="flex xs3 md4">
-        <va-input :label="$t('comum.dataemissao')" :value="pessoa.CIDDATA | formatDate" />
-        <va-input :label="$t('comum.tituloeleitor')" v-model="pessoa.NUMTITEL" />
-        <va-input :label="$t('comum.primeiroturno')" v-model="pessoa.VOTITEL1" />
+        <va-input :label="$t('comum.agencia')" v-model="pessoa.AGENCFUN" />
       </div>
       <div class="flex xs3 md4">
-        <va-input
-          :label="$t('comum.orgaoexpedidor')"
-          :value="`${pessoa.CIDORGAO} - ${pessoa.CIDUNFED}`"
-        />
-        <va-input :label="$t('comum.zonaeleitoral')" v-model="pessoa.ZONTITEL" />
-        <va-input :label="$t('comum.segundoturno')" v-model="pessoa.VOTITEL2" />
-      </div>
-    </div>
-
-    <div class="title text-dark mb-1" :style="{color: $themes.info}">
-      <div class="separator">
-        <va-icon name="fa fa-address-book" color="info" rotation="45" size="60" fixedWidth />
-        {{$t('comum.contatos')}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex xs3 md4">
-        <va-input :label="$t('comum.endereco')" v-model="pessoa.ENDRUAF" />
-        <va-input :label="$t('comum.cep')" v-model="pessoa.ENDCEPF" />
-        <va-input :label="$t('comum.ddd')" v-model="pessoa.DDDFUNC" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('comum.bairro')" v-model="pessoa.ENDBAIF" />
-        <va-input :label="$t('comum.telefone')" v-model="pessoa.TELEFUNC" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('comum.cidadeestado')" :value="`${pessoa.ENDCIDF} - ${pessoa.ENDESTF}`" />
+        <va-input :label="$t('comum.contacorrente')" v-model="pessoa.CONTAFUN" />
       </div>
     </div>
   </div>
@@ -138,8 +140,11 @@
 <script>
 export default {
   name: "detalhes-informacoes-gerais-tab",
-  props: {
-    pessoa: Object
+  props: ["pessoa", "fechar"],
+  methods: {
+    close() {
+      this.fechar();
+    }
   }
 };
 </script>
