@@ -276,6 +276,7 @@
     "dataemissao": "Data de emissão",
     "cpf": "CPF",
     "telefone": "Telefone",
+    "tituloeleitor": "Título de eleitor",
     "zonaeleitoral": "Zona",
     "secaoeleitoral": "Seção",
     "primeiroturno": "1 turno",
@@ -304,6 +305,11 @@
     "datatermino": "Data de término",
     "percentagemreciboseguro": "Percentagem recibo seguro",
     "matriculasiap": "Matrícula no SIAP",
-    "data": "Data"
+    "data": "Data",
+    "carteiratrabalho": "Carteira de trabalho",
+    "dadosbancarios" : "Dados bancários",
+    "informacaocontrato" : "Informações de contrato",
+    "contatos": "Contatos",
+    "cidadeestado": "Cidade - Estado"
   }
 }

@@ -16,6 +16,7 @@ import '../app/axios'
 
 import '../metrics'
 import '../registerServiceWorker'
+import '../app/filters'
 
 if (process.env.VUE_APP_BUILD_VERSION) {
   // eslint-disable-next-line
