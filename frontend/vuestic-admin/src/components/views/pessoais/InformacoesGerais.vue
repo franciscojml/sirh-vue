@@ -36,15 +36,13 @@
                   hoverable
                 >
                   <template slot="actions" slot-scope="props">
-                    <va-popover :message="$t('comum.detalhamento')" placement="top">
-                      <va-button
-                        flat
-                        small
-                        color="gray"
-                        icon="fa fa-info-cicle"
-                        @click="info(props.rowData)"
-                      />
-                    </va-popover>
+                    <va-button
+                      flat
+                      small
+                      color="gray"
+                      icon="fa fa-info-circle"
+                      @click="info(props.rowData)"
+                    />
                   </template>
                 </va-data-table>
                 <div class="flex xs10 md6">
@@ -62,7 +60,11 @@
           <div class="flex xs6" v-if="!style12">
             <div class="grid__container">
               <va-card>
-                <DetalhesInformacoesGerais :pessoa="pessoa" :fechar="fecharDetalhe" v-if="pessoa != null" />
+                <DetalhesInformacoesGerais
+                  :pessoa="pessoa"
+                  :fechar="fecharDetalhe"
+                  v-if="pessoa != null"
+                />
               </va-card>
             </div>
           </div>

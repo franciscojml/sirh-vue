@@ -139,7 +139,7 @@
 </template>
 <script>
 export default {
-  name: "detalhes-informacoes-gerais-tab",
+  name: "detalhes-informacoes-gerais",
   props: ["pessoa", "fechar"],
   methods: {
     close() {

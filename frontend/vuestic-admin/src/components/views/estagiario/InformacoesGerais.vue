@@ -36,15 +36,13 @@
                   hoverable
                 >
                   <template slot="actions" slot-scope="props">
-                    <va-popover :message="$t('comum.detalhamento')" placement="top">
-                      <va-button
-                        flat
-                        small
-                        color="gray"
-                        icon="fa fa-info-cicle"
-                        @click="info(props.rowData)"
-                      />
-                    </va-popover>
+                    <va-button
+                      flat
+                      small
+                      color="gray"
+                      icon="fa fa-info-circle"
+                      @click="info(props.rowData)"
+                    />
                   </template>
                 </va-data-table>
                 <div class="flex xs10 md6">
@@ -80,10 +78,10 @@
 import axios from "axios";
 import { baseApiUrl } from "@/global";
 
-import DetalhesInformacoesGerais from "@/components/views/pessoais/DetalhesInformacoesGerais";
+import DetalhesInformacoesGerais from "@/components/views/estagiario/DetalhesInformacoesGerais";
 
 export default {
-  name: "informacoes-gerais",
+  name: "informacoes-gerais-estagiario",
   components: {
     DetalhesInformacoesGerais
   },
