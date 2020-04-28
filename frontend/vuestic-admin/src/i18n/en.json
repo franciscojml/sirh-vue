@@ -322,7 +322,8 @@
     "spacing": "Spacing",
     "sliders": "Sliders",
     "popovers": "Popovers",
-    "chat": "Chat"
+    "chat": "Chat",
+    "estagiario": "Internship"
   },
   "messages": {
     "all": "See all messages",
@@ -452,7 +453,8 @@
       "location": "Location"
     },
     "searchInformacoesGerais": "General Information Search",
-    "searchByMatriculaNameCpf": "Search by name, registration or CPF"
+    "searchByMatriculaNameCpf": "Search by name, registration or CPF",
+    "searchByNameCpf": "Search by name or CPF"
   },
   "user": {
     "language": "Change Language",
@@ -535,14 +537,14 @@
       "segundoturno": "2 turno",
       "nomepai": "Nome do pai",
       "nomemae": "Nome da mãe",
-      "endereco": "Endereço",
+      "endereco": "Address",
       "bairro": "Bairro",
-      "cidade": "Cidade",
+      "cidade": "City",
       "cep": "CEP",
       "ddd": "DDD",
       "grauinstrucao": "Grau de instrução",
       "nivel": "Nível",
-      "situacao": "Situação",
+      "situacao": "Situation",
       "dataadmissao": "Data de admissão",
       "lotacao": "Lotação atual",
       "sublotacao": "Sublotação",
@@ -557,14 +559,28 @@
       "datatermino": "Data de término",
       "percentagemreciboseguro": "Percentagem recibo seguro",
       "matriculasiap": "Matrícula no SIAP",
-      "data": "Data",
+      "data": "Date",
       "carteiratrabalho": "Carteira de trabalho",
       "dadosbancarios" : "Dados bancários",
       "informacaocontrato" : "Informações de contrato",
-      "contatos": "Contatos",
+      "contatos": "Contacts",
       "cidadeestado": "Cidade - Estado",
-      "detalhamento": "Detalhamento",
-      "fechar": "Fechar"
+      "detalhamento": "Detail",
+      "fechar": "Close",
+      "raca": "Breed",
+      "tipodeficiencia": "Type of disability",
+      "deficienciafisica": "Physical disability",
+      "rua": "Street",
+      "numeropassaporte": "Passport number",
+      "dataexpiracao": "Expiration date",
+      "dddtelefone": "(DDD) Telephone",
+      "gruposanguineo": "Blood type",
+      "pispasep": "PISPASEP",
+      "dataprimeiroemprego": "Date of first job",
+      "identificador": "ID",
+      "pais": "Country",
+      "complemento": "Complement",
+      "ramal": "Ramal"
     }
   }
 }

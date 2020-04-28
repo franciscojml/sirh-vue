@@ -25,5 +25,19 @@ export const navigationRoutes = {
         }
       ],
     },
+    {
+      name: 'estagiario',
+      displayName: 'menu.estagiario',
+      meta: {
+        iconClass: 'maki maki-college',
+      },
+      disabled: true,
+      children: [
+        {
+          name: 'informacoes-gerais-estagiario',
+          displayName: 'menu.informacoesgerais',
+        }
+      ],
+    },
   ],
 }

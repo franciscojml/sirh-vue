@@ -10,7 +10,7 @@
                   <div class="flex xs12 md6">
                     <va-input
                       v-model="tableFilterValue"
-                      :placeholder="$t('tables.searchByMatriculaNameCpf')"
+                      :placeholder="$t('tables.searchByNameCpf')"
                       @change="readItems()"
                     >
                       <va-icon name="fa fa-search" slot="prepend" />
@@ -62,7 +62,11 @@
           <div class="flex xs6" v-if="!style12">
             <div class="grid__container">
               <va-card>
-                <DetalhesInformacoesGerais :pessoa="pessoa" :fechar="fecharDetalhe" v-if="pessoa != null" />
+                <DetalhesInformacoesGerais
+                  :pessoa="pessoa"
+                  :fechar="fecharDetalhe"
+                  v-if="pessoa != null"
+                />
               </va-card>
             </div>
           </div>
@@ -100,12 +104,12 @@ export default {
     fields() {
       return [
         {
-          name: "MATRICA",
-          title: this.$t("comum.matricula"),
+          name: "NU_CPF_ESTAGIARIO",
+          title: this.$t("comum.cpf"),
           width: "30%"
         },
         {
-          name: "NOMEFUNC",
+          name: "NM_ESTAGIARIO",
           title: this.$t("comum.nome"),
           width: "70%"
         },
@@ -132,7 +136,7 @@ export default {
         tableFilterValue: this.tableFilterValue
       };
 
-      const url = `${baseApiUrl}/api/pessoais/informacoesgerais`;
+      const url = `${baseApiUrl}/api/estagiario/informacoesgerais`;
 
       axios.get(url, { params }).then(response => {
         this.items = response.data.data;

@@ -170,7 +170,8 @@
     "uiElements": "Elementos UI",
     "treeView": "Árvore de visualização",
     "dateTimePickers": "Selecionar Data e Hora",
-    "chat": "Gráficos"
+    "chat": "Gráficos",
+    "estagiario": "Estagiário"
   },
   "messages": {
     "all": "Ver todas as menssagens",
@@ -242,7 +243,8 @@
       "country": "País"
     },
     "searchInformacoesGerais": "Pesquisa de Informações Gerais",
-    "searchByMatriculaNameCpf": "Procura por nome, matrícula ou CPF"
+    "searchByMatriculaNameCpf": "Procura por nome, matrícula ou CPF",
+    "searchByNameCpf": "Procura por nome ou CPF"
   },
   "user": {
     "language": "Trocar Linguagem",
@@ -308,11 +310,25 @@
     "matriculasiap": "Matrícula no SIAP",
     "data": "Data",
     "carteiratrabalho": "Carteira de trabalho",
-    "dadosbancarios" : "Dados bancários",
-    "informacaocontrato" : "Informações de contrato",
+    "dadosbancarios": "Dados bancários",
+    "informacaocontrato": "Informações de contrato",
     "contatos": "Contatos",
     "cidadeestado": "Cidade - Estado",
     "detalhamento": "Detalhamento",
-    "fechar": "Fechar"
+    "fechar": "Fechar",
+    "raca": "Raça",
+    "tipodeficiencia": "Tipo de deficiência",
+    "deficienciafisica": "Deficiência física",
+    "rua": "Rua",
+    "numeropassaporte": "Número do passaporte",
+    "dataexpiracao": "Data de expiração",
+    "dddtelefone": "(DDD) Telefone",
+    "gruposanguineo": "Grupo sanguineo",
+    "pispasep": "PISPASEP",
+    "dataprimeiroemprego": "Data do 1 emprego",
+    "identificador": "ID",
+    "pais": "País",
+    "complemento": "Complemento",
+    "ramal": "Ramal"
   }
 }

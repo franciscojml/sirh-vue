@@ -82,6 +82,18 @@ export default new Router({
             },
           ],
         },
+        {
+          name: 'estagiario',
+          path: 'estagiario',
+          component: EmptyParentComponent,
+          children: [
+            {
+              name: 'informacoes-gerais-estagiario',
+              path: 'informacoes-gerais-estagiario',
+              component: () => import('../components/views/estagiario/InformacoesGerais'),
+            },
+          ],
+        },
       ],
     },
   ],
