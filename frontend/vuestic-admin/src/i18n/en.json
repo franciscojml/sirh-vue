@@ -284,6 +284,8 @@
   "menu": {
     "pessoais": "Personal",
     "informacoesgerais": "General information",
+    "funcionais": "Employee",
+    "informacoes": "Information",
     "auth": "Auth",
     "rating": "Rating",
     "buttons": "Buttons",
@@ -454,7 +456,8 @@
     },
     "searchInformacoesGerais": "General Information Search",
     "searchByMatriculaNameCpf": "Search by name, registration or CPF",
-    "searchByNameCpf": "Search by name or CPF"
+    "searchByNameCpf": "Search by name or CPF",
+    "searchByMatricula": "Search by registration"
   },
   "user": {
     "language": "Change Language",
@@ -580,7 +583,8 @@
       "identificador": "ID",
       "pais": "Country",
       "complemento": "Complement",
-      "ramal": "Ramal"
+      "ramal": "Ramal",
+      "pesquisainformacoesfuncionais": "Search for functional information"
     }
   }
 }

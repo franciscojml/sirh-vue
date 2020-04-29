@@ -39,5 +39,19 @@ export const navigationRoutes = {
         }
       ],
     },
+    {
+      name: 'funcionais',
+      displayName: 'menu.funcionais',
+      meta: {
+        iconClass: 'maki maki-college',
+      },
+      disabled: true,
+      children: [
+        {
+          name: 'informacoes-funcionais',
+          displayName: 'menu.informacoes',
+        }
+      ],
+    },
   ],
 }

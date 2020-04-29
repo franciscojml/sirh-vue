@@ -94,6 +94,18 @@ export default new Router({
             },
           ],
         },
+        {
+          name: 'funcionais',
+          path: 'funcionais',
+          component: EmptyParentComponent,
+          children: [
+            {
+              name: 'informacoes-funcionais',
+              path: 'informacoes-funcionais',
+              component: () => import('../components/views/funcionais/Informacoes'),
+            },
+          ],
+        },
       ],
     },
   ],
