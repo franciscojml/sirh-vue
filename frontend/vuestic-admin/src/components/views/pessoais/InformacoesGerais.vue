@@ -103,12 +103,12 @@ export default {
       return [
         {
           name: "MATRICA",
-          title: this.$t("comum.matricula"),
+          title: this.$t("forms.inputs.matricula"),
           width: "30%"
         },
         {
           name: "NOMEFUNC",
-          title: this.$t("comum.nome"),
+          title: this.$t("forms.inputs.nome"),
           width: "70%"
         },
         ,

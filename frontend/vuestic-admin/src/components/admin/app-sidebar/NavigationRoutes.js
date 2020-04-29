@@ -43,7 +43,7 @@ export const navigationRoutes = {
       name: 'funcionais',
       displayName: 'menu.funcionais',
       meta: {
-        iconClass: 'maki maki-college',
+        iconClass: 'entypo entypo-briefcase',
       },
       disabled: true,
       children: [

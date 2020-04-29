@@ -8,7 +8,7 @@ Vue.i18n.add('cn', require('./cn.json'))
 Vue.i18n.add('ir', require('./ir.json'))
 
 // set the start locale to use
-Vue.i18n.set('br')
+Vue.i18n.set('en')
 
 // set fallback for non-translated strings
 Vue.i18n.fallback('en')

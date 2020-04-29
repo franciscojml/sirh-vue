@@ -103,12 +103,12 @@ export default {
       return [
         {
           name: "NU_CPF_ESTAGIARIO",
-          title: this.$t("comum.cpf"),
+          title: this.$t("forms.inputs.cpf"),
           width: "30%"
         },
         {
           name: "NM_ESTAGIARIO",
-          title: this.$t("comum.nome"),
+          title: this.$t("forms.inputs.nome"),
           width: "70%"
         },
         ,
