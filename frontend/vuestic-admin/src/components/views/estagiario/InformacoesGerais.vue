@@ -5,7 +5,7 @@
         <div class="row">
           <div :class="style12 ? 'flex xs12 md12' : 'flex xs12 md6'">
             <div class="grid__container">
-              <va-card :title="$t('tables.searchInformacoesGerais')">
+              <va-card :title="$t('tables.searchInformacoesGeraisestagiario')">
                 <div class="row align--center">
                   <div class="flex xs12 md6">
                     <va-input
@@ -103,12 +103,12 @@ export default {
       return [
         {
           name: "NU_CPF_ESTAGIARIO",
-          title: this.$t("forms.inputs.cpf"),
+          title: this.$t("forms.comum.cpf"),
           width: "30%"
         },
         {
           name: "NM_ESTAGIARIO",
-          title: this.$t("forms.inputs.nome"),
+          title: this.$t("forms.comum.nome"),
           width: "70%"
         },
         ,

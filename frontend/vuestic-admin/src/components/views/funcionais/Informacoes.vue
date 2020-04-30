@@ -5,7 +5,7 @@
         <div class="row">
           <div :class="style12 ? 'flex xs12 md12' : 'flex xs12 md6'">
             <div class="grid__container">
-              <va-card :title="$t('forms.inputs.pesquisainformacoesfuncionais')">
+              <va-card :title="$t('forms.comum.pesquisainformacoesfuncionais')">
                 <div class="row align--center">
                   <div class="flex xs12 md6">
                     <va-input
@@ -103,12 +103,12 @@ export default {
       return [
         {
           name: "MATRICA",
-          title: this.$t("forms.inputs.matricula"),
+          title: this.$t("forms.comum.matricula"),
           width: "30%"
         },
         {
           name: "PISPASEP",
-          title: this.$t("forms.inputs.pispasep"),
+          title: this.$t("forms.comum.pispasep"),
           width: "70%"
         },
         ,

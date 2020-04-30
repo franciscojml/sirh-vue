@@ -105,7 +105,19 @@
       "textInputWithDescription": "Entrada de Texto (com descrição)",
       "textArea": "Área de Texto",
       "title": "Entrada",
-      "upload": "UPLOAD",
+      "upload": "UPLOAD"
+    },
+    "mediumEditor": {
+      "title": "Editor Medium"
+    },
+    "selects": {
+      "country": "Selecionar Região",
+      "countryMulti": "Selecionar Multiplas Regiões",
+      "multi": "Selecionar Múltiplos",
+      "simple": "Selecionador Simples",
+      "title": "Selecionadores"
+    },
+    "comum": {
       "matricula": "Matrícula",
       "nome": "Nome",
       "meusdados": "Meus dados",
@@ -175,6 +187,7 @@
       "complemento": "Complemento",
       "ramal": "Ramal",
       "pesquisainformacoesfuncionais": "Pesquisa por informações funcionais",
+      "pesquisainformacoespessoais": "Pesquisa por informações pessoais",
       "habilitacaoprofissional": "Habilitação Profissional",
       "hapentid": "Entidade emissora",
       "hapnureg": "Número do registro",
@@ -206,16 +219,6 @@
       "efedata": "Data Início Referência Atual",
       "nudepir": "Número Dependentes IR",
       "nudepsf": "Número Dependentes SF"
-    },
-    "mediumEditor": {
-      "title": "Editor Medium"
-    },
-    "selects": {
-      "country": "Selecionar Região",
-      "countryMulti": "Selecionar Multiplas Regiões",
-      "multi": "Selecionar Múltiplos",
-      "simple": "Selecionador Simples",
-      "title": "Selecionadores"
     }
   },
   "grid": {
@@ -344,7 +347,7 @@
       "status": "Status",
       "country": "País"
     },
-    "searchInformacoesGerais": "Pesquisa de Informações Gerais",
+    "searchInformacoesGeraisestagiario": "Pesquisa de informações gerais estagiário",
     "searchByMatriculaNameCpf": "Procura por nome, matrícula ou CPF",
     "searchByNameCpf": "Procura por nome ou CPF",
     "searchByMatricula": "Procura por matrícula"
@@ -363,5 +366,50 @@
   },
   "chat": {
     "title": "Gráficos"
+  },
+  "chat": {
+    "title": "Chat"
+  },
+  "spacingPlayground": {
+    "value": "Value",
+    "margin": "Margin",
+    "padding": "Padding"
+  },
+  "cards": {
+    "cards": "Cards",
+    "fixed": "Fixed",
+    "floating": "Floating",
+    "contentText": "The unique stripes of zebras make them one of the animals most familiar to people.",
+    "contentTextLong": "The unique stripes of zebras make them one of the animals most familiar to people. They occur in a variety of habitats, such as grasslands, savannas, woodlands, thorny scrublands, mountains, and coastal hills. Various anthropogenic factors have had a severe impact on zebra populations, in particular hunting for skins and habitat destruction. Grévy's zebra and the mountain zebra are endangered. While plains zebras are much more plentiful, one subspecies, the quagga.",
+    "rowHeight": "Row height",
+    "title": {
+      "default": "Default",
+      "withControls": "With controls",
+      "customHeader": "Custom header",
+      "withoutHeader": "Without header",
+      "withImage": "With Image",
+      "withTitleOnImage": "With title on image",
+      "withCustomTitleOnImage": "With custom title on image",
+      "withStripe": "With stripe",
+      "withBackground": "With background",
+      "totalRecords": "Total records"
+    },
+    "button": {
+      "main": "Main",
+      "cancel": "Cancel"
+    },
+    "link": {
+      "edit": "Edit",
+      "setAsDefault": "Set as default",
+      "delete": "Delete",
+      "traveling": "Traveling",
+      "france": "France",
+      "review": "Review",
+      "feedback": "Leave feedback",
+      "readFull": "Read full article",
+      "secondaryAction": "Secondary action",
+      "action1": "Action 1",
+      "action2": "Action 2"
+    }
   }
 }

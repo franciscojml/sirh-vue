@@ -14,6 +14,8 @@ module.exports = app => {
         .get(app.api.funcionais.informacoes.getInformacoes)
 
     app.route('/api/estagiario/informacoesgerais')
-        .get(app.api.estagiario.informacoesgerais.getInformacoesGerais)
+        .get(app.api.estagiario.informacoes.getInformacoesGerais)
 
+    app.route('/api/estagiario/informacoesfuncionais')
+        .get(app.api.estagiario.informacoes.getInformacoesFuncionais)
 }

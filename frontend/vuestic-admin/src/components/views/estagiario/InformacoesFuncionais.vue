@@ -5,12 +5,12 @@
         <div class="row">
           <div :class="style12 ? 'flex xs12 md12' : 'flex xs12 md6'">
             <div class="grid__container">
-              <va-card :title="$t('forms.comum.pesquisainformacoespessoais')">
+              <va-card :title="$t('tables.searchInformacoesGeraisestagiario')">
                 <div class="row align--center">
                   <div class="flex xs12 md6">
                     <va-input
                       v-model="tableFilterValue"
-                      :placeholder="$t('tables.searchByMatriculaNameCpf')"
+                      :placeholder="$t('tables.searchByNameCpf')"
                       @change="readItems()"
                     >
                       <va-icon name="fa fa-search" slot="prepend" />
@@ -78,10 +78,10 @@
 import axios from "axios";
 import { baseApiUrl } from "@/global";
 
-import DetalhesInformacoesGerais from "@/components/views/pessoais/DetalhesInformacoesGerais";
+import DetalhesInformacoesGerais from "@/components/views/estagiario/DetalhesInformacoesGerais";
 
 export default {
-  name: "informacoes-gerais",
+  name: "informacoes-funcionais-estagiario",
   components: {
     DetalhesInformacoesGerais
   },
@@ -102,12 +102,12 @@ export default {
     fields() {
       return [
         {
-          name: "MATRICA",
-          title: this.$t("forms.comum.matricula"),
+          name: "NU_CPF_ESTAGIARIO",
+          title: this.$t("forms.comum.cpf"),
           width: "30%"
         },
         {
-          name: "NOMEFUNC",
+          name: "NM_ESTAGIARIO",
           title: this.$t("forms.comum.nome"),
           width: "70%"
         },
@@ -134,7 +134,7 @@ export default {
         tableFilterValue: this.tableFilterValue
       };
 
-      const url = `${baseApiUrl}/api/pessoais/informacoesgerais`;
+      const url = `${baseApiUrl}/api/estagiario/informacoesgerais`;
 
       axios.get(url, { params }).then(response => {
         this.items = response.data.data;
