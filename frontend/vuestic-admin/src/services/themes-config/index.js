@@ -7,14 +7,14 @@ export const AvailableColorThemes = [
   {
     name: ColorThemes.CORPORATE,
     themes: {
-      primary: '#6c7fee',
-      secondary: '#6e7ff1',
-      success: '#8ddc88',
-      info: '#71baff',
-      danger: '#f8706d',
-      warning: '#ffd652',
-      gray: '#8396a5',
-      dark: '#34495e',
+      primary: '#3E498C',
+      secondary: '#384582',
+      success: '#52AB48',
+      info: '#3D82C5',
+      danger: '#C33A38',
+      warning: '#D6AD30',
+      gray: '#757B82',
+      dark: '#253444',
     },
   },
 ]
