@@ -29,6 +29,13 @@
                 />
               </CCol>
             </CRow>
+            <CRow alignVertical="center" alignHorizontal="center">
+              <CCol col="12" sm="6" lg="3">
+                <CWidgetIcon :header="`${totalRecords}`" text="Total de registros" color="primary" :iconPadding="false">
+                  <CIcon name="cil-user" width="24" />
+                </CWidgetIcon>
+              </CCol>
+            </CRow>
           </CCardBody>
         </CCard>
       </CCol>
@@ -51,11 +58,12 @@ export default {
   name: "InformacoesGerais",
   data: function() {
     return {
-      perPage: "10",
+      perPage: "5",
       tableFilterValue: "",
       perPageOptions: ["5", "10", "15", "20"],
       activePage: 1,
       totalPages: 0,
+      totalRecords: 0,
       loading: false,
       loadedItems: [],
       fields
@@ -89,6 +97,7 @@ export default {
         });
 
         this.totalPages = response.data.total_pages;
+        this.totalRecords = response.data.totalRecords;
         this.loading = false;
       });
     }

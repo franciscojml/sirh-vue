@@ -1,7 +1,7 @@
 <template>
   <div class="app-navbar-actions">
-    <!--color-dropdown class="app-navbar-actions__item"/>
-    <message-dropdown class="app-navbar-actions__item"/>
+    <color-dropdown class="app-navbar-actions__item"/>
+    <!--message-dropdown class="app-navbar-actions__item"/>
     <notification-dropdown class="app-navbar-actions__item"/>
     <settings-dropdown
       :is-top-bar.sync="isTopBarProxy"
