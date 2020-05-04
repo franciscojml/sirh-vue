@@ -65,7 +65,7 @@ export default {
   inject: ['contextConfig'],
   mixins: [ColorThemeActionsMixin, ColorThemeMixin],
   created () {
-    this.setTheme('corporate')
+    //this.setTheme('corporate')
     if (this.$route.query && this.$route.query.theme === 'corporate') {
       this.setTheme('corporate')
     }

@@ -5,7 +5,8 @@ import 'regenerator-runtime/runtime'
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import { ColorThemePlugin } from '../services/vuestic-ui'
+//import { ColorThemePlugin } from '../services/vuestic-ui'
+import { CustomColorThemePlugin } from '@/config/themes/CustomColorThemePlugin'
 import store from '../store/index'
 import router from '../router/index'
 import { VuesticPlugin } from '../services/vuestic-ui/components'
@@ -32,7 +33,7 @@ Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
 Vue.use(VueClipboard)
 
-Vue.use(ColorThemePlugin, {
+Vue.use(CustomColorThemePlugin, {
   // override colors here.
 })
 

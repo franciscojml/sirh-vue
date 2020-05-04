@@ -46,12 +46,12 @@ export default {
     // Temporary colors fix for 2.1.
     "contextConfig.invertedColor"(val) {
       const invertedColorClass = "va-inverted-color";
-      document.body.classList.add(invertedColorClass);
-      /*if (val) {
+      //document.body.classList.add(invertedColorClass);
+      if (val) {
         document.body.classList.add(invertedColorClass);
       } else {
         document.body.classList.remove(invertedColorClass);
-      }*/
+      }
     }
   },
   methods: {
