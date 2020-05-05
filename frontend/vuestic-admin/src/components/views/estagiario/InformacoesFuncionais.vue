@@ -60,7 +60,7 @@
           <div class="flex xs6" v-if="!style12">
             <div class="grid__container">
               <va-card>
-                <DetalhesInformacoesGerais
+                <DetalhesInformacoesFuncionais
                   :pessoa="pessoa"
                   :fechar="fecharDetalhe"
                   v-if="pessoa != null"
@@ -77,13 +77,12 @@
 <script>
 import axios from "axios";
 import { baseApiUrl } from "@/global";
-
-import DetalhesInformacoesGerais from "@/components/views/estagiario/DetalhesInformacoesGerais";
+import DetalhesInformacoesFuncionais from "@/components/views/estagiario/DetalhesInformacoesFuncionais";
 
 export default {
   name: "informacoes-funcionais-estagiario",
   components: {
-    DetalhesInformacoesGerais
+    DetalhesInformacoesFuncionais
   },
   data() {
     return {
@@ -95,7 +94,8 @@ export default {
       tableFilterValue: "",
       totalRecords: 0,
       pessoa: null,
-      style12: true
+      style12: true,
+      group: []
     };
   },
   computed: {
@@ -107,7 +107,7 @@ export default {
           width: "30%"
         },
         {
-          name: "NM_ESTAGIARIO",
+          name: "AFASCODI",
           title: this.$t("forms.comum.nome"),
           width: "70%"
         },
@@ -134,10 +134,14 @@ export default {
         tableFilterValue: this.tableFilterValue
       };
 
-      const url = `${baseApiUrl}/api/estagiario/informacoesgerais`;
+      const url = `${baseApiUrl}/api/estagiario/informacoesfuncionais`;
 
       axios.get(url, { params }).then(response => {
         this.items = response.data.data;
+
+        this.group = this.$_.groupBy(this.items, 'NU_CPF_ESTAGIARIO');
+        console.log('dado' + this.group[0])
+
         this.totalPages = response.data.total_pages;
         this.totalRecords = response.data.totalRecords;
         this.loading = false;

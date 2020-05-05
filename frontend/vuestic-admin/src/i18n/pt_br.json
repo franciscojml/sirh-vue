@@ -246,6 +246,7 @@
   "menu": {
     "pessoais": "Pessoais",
     "informacoesgerais": "Informações gerais",
+    "informacoesfuncionais": "Informações funcionais",
     "funcionais": "Funcionais",
     "informacoes": "Informações",
     "auth": "Autorização",

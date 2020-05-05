@@ -388,6 +388,7 @@
   "menu": {
     "pessoais": "Personal",
     "informacoesgerais": "General information",
+    "informacoesfuncionais": "Functional information",
     "funcionais": "Employee",
     "informacoes": "Information",
     "auth": "Auth",

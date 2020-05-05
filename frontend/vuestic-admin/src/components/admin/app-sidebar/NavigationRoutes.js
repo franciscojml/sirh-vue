@@ -36,6 +36,10 @@ export const navigationRoutes = {
         {
           name: 'informacoes-gerais-estagiario',
           displayName: 'menu.informacoesgerais',
+        },
+        {
+          name: 'informacoes-funcionais-estagiario',
+          displayName: 'menu.informacoesfuncionais',
         }
       ],
     },

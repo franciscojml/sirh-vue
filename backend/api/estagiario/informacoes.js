@@ -41,7 +41,7 @@ module.exports = app => {
         }
     }
 
-    /*const getInformacoesFuncionais = async (req, res) => {
+    const getInformacoesFuncionais = async (req, res) => {
         const per_page = req.query.per_page
         const page = req.query.page
         const tableFilterValue = req.query.tableFilterValue
@@ -54,7 +54,7 @@ module.exports = app => {
             const total_pages = parseInt(totalRecords / per_page)
 
             model.clone()
-                .orderBy('DT_INICIO_ESTAGIO', 'asc')
+                .orderBy('NU_CPF_ESTAGIARIO', 'asc')
                 .limit(per_page).offset(page * per_page - per_page).select()
                 .then(empregado => res.json({ data: empregado, total_pages, totalRecords }))
                 .catch(err => res.status(500).send(err.stack))
@@ -69,19 +69,21 @@ module.exports = app => {
             const total_pages = parseInt(totalRecords / per_page)
 
             model.clone()
-                .orderBy('DT_INICIO_ESTAGIO', 'asc')
+                .orderBy('NU_CPF_ESTAGIARIO', 'asc')
                 .limit(per_page).offset(page * per_page - per_page)
                 .then(empregado => res.json({ data: empregado, total_pages, totalRecords }))
                 .catch(err => res.status(500).send(err.stack))
         }
-    }*/
-
-    const getInformacoesFuncionais = (req, res) => {
-        app.db('SIRH.SRHTB291')
-            .groupBy('NU_CPF_ESTAGIARIO')
-            .then(empregado => res.json({ data: empregado }))
-            .catch(err => res.status(500).send(err))
     }
+
+    /*const getInformacoesFuncionais = (req, res) => {
+        const per_page = req.query.per_page
+        const page = req.query.page
+
+        app.db.raw(queries.estagiarioWithInfoFuncionais)
+            .then(estagiario => res.json({ data: estagiario, total_pages, totalRecords }))
+            .catch(err => res.status(500).send(err.stack))
+    }*/
 
     return { getInformacoesGerais, getInformacoesFuncionais }
 }

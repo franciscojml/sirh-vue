@@ -92,6 +92,11 @@ export default new Router({
               path: 'informacoes-gerais-estagiario',
               component: () => import('../components/views/estagiario/InformacoesGerais'),
             },
+            {
+              name: 'informacoes-funcionais-estagiario',
+              path: 'informacoes-funcionais-estagiario',
+              component: () => import('../components/views/estagiario/InformacoesFuncionais'),
+            },
           ],
         },
         {

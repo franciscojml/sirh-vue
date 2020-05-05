@@ -14,6 +14,7 @@ import '../i18n/index'
 import YmapPlugin from 'vue-yandex-maps'
 import VueClipboard from 'vue-clipboard2'
 import '../app/axios'
+import underscore from 'vue-underscore';
 
 import '../metrics'
 import '../registerServiceWorker'
@@ -29,6 +30,7 @@ if (process.env.VUE_APP_BUILD_VERSION) {
   )
 }
 
+Vue.use(underscore);
 Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
 Vue.use(VueClipboard)

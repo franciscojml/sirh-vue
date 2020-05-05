@@ -162,7 +162,7 @@
 </template>
 <script>
 export default {
-  name: "detalhes-informacoes-gerais-estagiario",
+  name: "detalhes-informacoes-funcionais-estagiario",
   props: ["pessoa", "fechar"],
   methods: {
     close() {
