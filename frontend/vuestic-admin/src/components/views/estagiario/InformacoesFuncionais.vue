@@ -48,7 +48,7 @@
                 <div class="flex xs10 md6">
                   <va-card
                     :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'"
-                    color="linear-gradient(to right, hsl(196,77%,55%), hsl(211,74%,53%))"
+                    color="#34495e"
                   >
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
                     <p>{{$t('charts.totalRecords')}}</p>

@@ -5,9 +5,8 @@ export const originalTheme = Object.freeze({
         'invertedColor': false,
     },
     colors: {
-        //primary: '#3e498c',
-        primary: '#31396f',
-        secondary: '#384582',
+        primary: '#3e498c',
+        secondary: '#070c12',
         success: '#52ab48',
         info: '#3d82c5',
         danger: '#c33a38',
@@ -24,7 +23,7 @@ export const corporateTheme = Object.freeze({
         'invertedColor': true,
     },
     colors: {
-        primary: '#31396f',
+        primary: '#3e498c',
         secondary: '#384582',
         success: '#52ab48',
         info: '#3d82c5',

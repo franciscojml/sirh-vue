@@ -109,8 +109,8 @@ export default {
 
   .flag-icon-large {
     display: block;
-    width: 31px;
-    height: 23px;
+    width: 28px;
+    height: 20px;
   }
 
   .va-dropdown__anchor {

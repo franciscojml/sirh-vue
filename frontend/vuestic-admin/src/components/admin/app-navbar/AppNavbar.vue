@@ -27,7 +27,6 @@
         :is-top-bar.sync="isTopBarProxy"
       />
     </div>
-    <div class="app-navbar__shape" :style="shapeStyle"></div>
   </nav>
 </template>
 
@@ -113,14 +112,14 @@ export default {
     }
   },
   methods: {
-    getPropsUser(){
+    getPropsUser() {
       const json = localStorage.getItem(userKey);
       const userData = JSON.parse(json);
-      this.userName = userData.user.name
+      this.userName = userData.user.name;
     }
   },
-  created(){
-    this.getPropsUser()
+  created() {
+    this.getPropsUser();
   }
 };
 </script>
@@ -129,12 +128,14 @@ export default {
 $nav-border-side-width: 3.1875rem;
 
 .app-navbar {
+  background-color: white;
   transition: background-color 0.3s ease; /* sidebar's bg color transitions as well -> consistency */
   display: flex;
-  padding: 1rem 1rem;
+  padding: 0.6rem 0.6rem;
   z-index: 1;
 
   &__content {
+    //background-color: #607d8b;
     z-index: 1;
     align-items: center;
     justify-content: space-between;
@@ -203,18 +204,6 @@ $nav-border-side-width: 3.1875rem;
   }
 
   &__shape {
-    transition: border-top-color 0.3s ease; /* sidebar's bg color transitions as well -> consistency */
-    width: 33%;
-    max-width: 467px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    margin: auto;
-    border-top: 4.215rem solid transparent; // hardcoded size
-    border-left: $nav-border-side-width solid transparent;
-    border-right: $nav-border-side-width solid transparent;
-    height: 0;
   }
 
   @include media-breakpoint-down(lg) {

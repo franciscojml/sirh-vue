@@ -1,6 +1,6 @@
 <template>
   <div class="app-navbar-actions">
-    <color-dropdown class="app-navbar-actions__item"/>
+    <color-dropdown class="app-navbar-actions__item" />
     <!--message-dropdown class="app-navbar-actions__item"/>
     <notification-dropdown class="app-navbar-actions__item"/>
     <settings-dropdown
@@ -9,8 +9,8 @@
     /-->
     <language-dropdown class="app-navbar-actions__item" />
     <profile-dropdown class="app-navbar-actions__item app-navbar-actions__item--profile">
-      <va-avatar style="width: 30%; height: auto; border-radius: 25em;">
-        <img v-if="urlPhotoProfile" :src="urlPhotoProfile" />
+      <va-avatar :style="urlPhotoProfile ? 'width: 30%; height: auto; border-radius: 25em;' : 'width: 60%; height: auto; border-radius: 25em;'">
+        <img :src="urlPhotoProfile ? urlPhotoProfile : 'img/avatars/profile.jpg'" />
       </va-avatar>
     </profile-dropdown>
   </div>
