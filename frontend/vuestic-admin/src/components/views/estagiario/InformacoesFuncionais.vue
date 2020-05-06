@@ -25,16 +25,51 @@
                     />
                   </div>
                 </div>
-                <va-data-table
-                  :fields="fields"
-                  :data="items"
-                  :per-page="parseInt(perPage)"
-                  :loading="loading"
-                  :totalPages="totalPages"
-                  @page-selected="readItems"
-                  api-mode
-                  hoverable
-                ></va-data-table>
+                <div class="markup-tables">
+                  <va-card class="mb-2">
+                    <table class="va-table va-table--striped">
+                      <thead>
+                        <tr>
+                          <th>CPF</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="cpf in groupKeys" :key="`${cpf}`">
+                          <td>
+                            <va-tree-root>
+                              <va-tree-category :label="`${cpf}`">
+                                <div>
+                                  <table>
+                                    <thead>
+                                      <tr>
+                                        <th>Data de início</th>
+                                        <th>Data de término</th>
+                                        <th>Contrato</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr v-for="item in items[cpf]" :key="item">
+                                        <va-tree-node>
+                                          <td>{{item.DT_INICIO_ESTAGIO | formatDate}}</td>
+                                          <td>{{item.DT_TERMINO_ESTAGIO | formatDate}}</td>
+                                          <td>
+                                            <va-badge
+                                              :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
+                                            >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
+                                          </td>
+                                        </va-tree-node>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </va-tree-category>
+                            </va-tree-root>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </va-card>
+                </div>
                 <div class="flex xs10 md6">
                   <va-card :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'" color="#34495e">
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
@@ -82,8 +117,7 @@ export default {
       totalRecords: 0,
       pessoa: null,
       style12: true,
-      group: [],
-      group2: []
+      groupKeys: []
     };
   },
   computed: {
@@ -115,24 +149,11 @@ export default {
       const url = `${baseApiUrl}/api/estagiario/informacoesfuncionais`;
 
       axios.get(url, { params }).then(response => {
-        this.items = response.data.data;
-        //this.items = this.$_.groupBy(this.items, "NU_CPF_ESTAGIARIO");
-        this.group = this.$_.groupBy(
-          this.items,
-          "NU_CPF_ESTAGIARIO"
-        );
-        
-        this.group2 = this.$_.groupBy(
-          this.items,
-          this.$_.mapObject(this.items, function(val, key) {
-            return {
-              key : val
-            };
-          })
-        );
+        this.items = this.$_.groupBy(response.data.data, "NU_CPF_ESTAGIARIO");
+        this.groupKeys = this.$_.keys(this.items);
+
         //console.log("dado" + JSON.stringify(this.group2["00001288210"]));
-        console.log("group: " + JSON.stringify(this.group2));
-        
+        //console.log("group: " + JSON.stringify(this.group2));
 
         this.totalPages = response.data.total_pages;
         this.totalRecords = response.data.totalRecords;
