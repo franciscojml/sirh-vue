@@ -5,12 +5,12 @@
         <div class="row">
           <div :class="style12 ? 'flex xs12 md12' : 'flex xs12 md6'">
             <div class="grid__container">
-              <va-card :title="$t('tables.searchInformacoesFuncionaisEstagiario')">
+              <va-card :title="$t('tables.searchInformacoesGeraisestagiario')">
                 <div class="row align--center">
                   <div class="flex xs12 md6">
                     <va-input
                       v-model="tableFilterValue"
-                      :placeholder="$t('tables.searchByCpf')"
+                      :placeholder="$t('tables.searchByNameCpf')"
                       @change="readItems()"
                     >
                       <va-icon name="fa fa-search" slot="prepend" />
@@ -25,60 +25,59 @@
                     />
                   </div>
                 </div>
-                {{ $t('forms.comum.cpf') }}
-                <va-data-table
-                  :fields="fields"
-                  :data="groupKeys"
-                  :per-page="parseInt(perPage)"
-                  :loading="loading"
-                  :totalPages="totalPages"
-                  @page-selected="readItems"
-                  api-mode
-                  hoverable
-                >
-                  <template slot="records" slot-scope="props">
-                    <va-tree-root>
-                      <va-tree-category :label="props.rowData.NU_CPF_ESTAGIARIO">
-                        <table class="va-table">
-                          <thead>
-                            <tr>
-                              <th>{{ $t('forms.comum.datainicio') }}</th>
-                              <th>{{ $t('forms.comum.datatermino') }}</th>
-                              <th>{{ $t('forms.comum.contrato') }}</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <va-tree-node
-                                v-for="(item, idx) in itemsKey(props.rowData.NU_CPF_ESTAGIARIO)"
-                                :key="idx"
-                              >
-                                <td>{{item.DT_INICIO_ESTAGIO | formatDate}}</td>
-                                <td>{{item.DT_TERMINO_ESTAGIO | formatDate}}</td>
-                                <td>
-                                  <va-badge
-                                    :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
-                                  >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
-                                </td>
-                                <td>
-                                  <va-button
-                                    flat
-                                    small
-                                    color="gray"
-                                    icon="fa fa-info-circle"
-                                    @click="info(item)"
-                                  />
-                                </td>
-                              </va-tree-node>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </va-tree-category>
-                    </va-tree-root>
-                  </template>
-                </va-data-table>
-
+                <div class="markup-tables">
+                  <va-card class="mb-2">
+                    <table class="va-table va-table--striped">
+                      <thead>
+                        <tr>
+                          <th>{{ $t('forms.comum.cpf') }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="cpf in groupKeys" :key="cpf">
+                          <td>
+                            <va-tree-root>
+                              <va-tree-category :label="cpf">
+                                <table class="va-table">
+                                  <thead>
+                                    <tr>
+                                      <th>{{ $t('forms.comum.datainicio') }}</th>
+                                      <th>{{ $t('forms.comum.datatermino') }}</th>
+                                      <th>{{ $t('forms.comum.contrato') }}</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <va-tree-node v-for="(item, idx) in itemsKey(cpf)" :key="idx">
+                                        <td>{{item.DT_INICIO_ESTAGIO | formatDate}}</td>
+                                        <td>{{item.DT_TERMINO_ESTAGIO | formatDate}}</td>
+                                        <td>
+                                          <va-badge
+                                            :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
+                                          >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
+                                        </td>
+                                        <td>
+                                          <va-button
+                                            flat
+                                            small
+                                            color="gray"
+                                            icon="fa fa-info-circle"
+                                            @click="info(item)"
+                                          />
+                                        </td>
+                                      </va-tree-node>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </va-tree-category>
+                            </va-tree-root>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </va-card>
+                </div>
                 <div class="flex xs10 md6">
                   <va-card :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'" color="#34495e">
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
@@ -133,9 +132,9 @@ export default {
     fields() {
       return [
         {
-          name: "__slot:records",
-          width: "30px",
-          dataClass: "text-center"
+          name: "NU_CPF_ESTAGIARIO",
+          title: this.$t("forms.comum.cpf"),
+          width: "15%"
         }
       ];
     },
@@ -160,11 +159,7 @@ export default {
       axios.get(url, { params }).then(response => {
         this.items = response.data.data;
         const group = this.$_.groupBy(this.items, "NU_CPF_ESTAGIARIO");
-        const keys = this.$_.keys(group);
-        this.groupKeys = this.$_.map(keys, function(value, key) {
-          return { NU_CPF_ESTAGIARIO: value };
-        });
-
+        this.groupKeys = this.$_.keys(group);
         this.totalPages = response.data.total_pages;
         this.totalRecords = response.data.totalRecords;
         this.loading = false;

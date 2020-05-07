@@ -265,6 +265,7 @@
       "nacionalidade": "Nationality",
       "documentacao": "Documentation",
       "tipocontrato": "Type of contract",
+      "contrato": "Contract",
       "datanascimento": "Date of birth",
       "naturalidade": "Naturalness",
       "estado": "State",
@@ -359,7 +360,23 @@
       "eferefer": "Current Reference",
       "efedata": "Date Home Current Reference",
       "nudepir": "Number of IR Dependents",
-      "nudepsf": "Number of SF Dependents"
+      "nudepsf": "Number of SF Dependents",
+      "cd_entidade_estagio": "Internship Entity",
+      "cd_escolaridade_estagiario": "Education",
+      "nu_jornada_estagio": "Internship journey",
+      "matrsuperv": "Supervisor registration",
+      "codcurso": "Course",
+      "codinstensino": "Educational institution",
+      "semestre_inicio_curso": "Start semester",
+      "ano_inicio_curso": "Starting year",
+      "semestre_fim_curso": "End semester",
+      "ano_fim_curso": "End year",
+      "codmodbolsa": "Grant modality",
+      "instpagbolsa": "Scholarship paying institution",
+      "dataprorrogacao": "Date of extension",
+      "data_encerramento_contrato": "Contract end date",
+      "vertente": 1,
+      "numeroinep": "INEP"
     }
   },
   "grid": {
@@ -560,9 +577,11 @@
       "location": "Location"
     },
     "searchInformacoesGeraisestagiario": "Search for general internship information",
+    "searchInformacoesFuncionaisEstagiario": "Search for functional internship information",
     "searchByMatriculaNameCpf": "Search by name, registration or CPF",
     "searchByNameCpf": "Search by name or CPF",
-    "searchByMatricula": "Search by registration"
+    "searchByMatricula": "Search by registration",
+    "searchByCpf": "Search by CPF"
   },
   "user": {
     "language": "Change Language",

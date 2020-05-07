@@ -3,6 +3,19 @@
     <div class="flex-end" style="text-align: right;">
       <va-button flat color="danger" icon="ion-md-close ion" @click="close()" />
     </div>
+
+    <va-input :label="$t('forms.comum.tipocontrato')" :value="pessoa.TIPOCONT" type="text" />
+    <va-input :label="$t('forms.comum.sublotacao')" :value="pessoa.SUBLOTATUAL" type="text" />
+    <va-input :label="$t('forms.comum.matrsuperv')" :value="pessoa.MATRSUPERV" type="text" />
+    <va-input :label="$t('forms.comum.nu_jornada_estagio')" :value="pessoa.NU_JORNADA_ESTAGIO" type="text" />
+    <va-input :label="$t('forms.comum.codmodbolsa')" :value="pessoa.CODMODBOLSA" type="text" />
+    <va-input :label="$t('forms.comum.dataprorrogacao')" :value="pessoa.DATAPRORROGACAO" type="text" />
+    <va-input :label="$t('forms.comum.data_encerramento_contrato')" :value="pessoa.DATA_ENCERRAMENTO_CONTRATO" type="text" />
+    <va-input :label="$t('forms.comum.codigoafastamento')" :value="pessoa.AFASCODI" type="text" />
+    <va-input :label="$t('forms.comum.cd_entidade_estagio')" :value="pessoa.CD_ENTIDADE_ESTAGIO" type="text" />
+    <va-input :label="$t('forms.comum.instpagbolsa')" :value="pessoa.INSTPAGBOLSA" type="text" />
+    <va-input :label="$t('forms.comum.vertente')" :value="pessoa.VERTENTE" type="text" />
+    <va-input :label="$t('forms.comum.numeroinep')" :value="pessoa.NUMEROINEP" type="text" />
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
       <div class="separator">
         <va-icon name="fa fa-user" color="info" rotation="45" size="60" fixedWidth />
@@ -39,6 +52,15 @@
        
       </div>
     </div>
+
+
+    <va-input :label="$t('forms.comum.cd_escolaridade_estagiario')" :value="pessoa.CD_ESCOLARIDADE_ESTAGIARIO" type="text" />
+<va-input :label="$t('forms.comum.codcurso')" :value="pessoa.CODCURSO" type="text" />
+<va-input :label="$t('forms.comum.codinstensino')" :value="pessoa.CODINSTENSINO" type="text" />
+<va-input :label="$t('forms.comum.semestre_inicio_curso')" :value="pessoa.SEMESTRE_INICIO_CURSO" type="text" />
+<va-input :label="$t('forms.comum.ano_inicio_curso')" :value="pessoa.ANO_INICIO_CURSO" type="text" />
+<va-input :label="$t('forms.comum.semestre_fim_curso')" :value="pessoa.SEMESTRE_FIM_CURSO" type="text" />
+<va-input :label="$t('forms.comum.ano_fim_curso')" :value="pessoa.ANO_FIM_CURSO" type="text" />
     <div class="title text-dark mb-1" :style="{color: $themes.info}">
       <div class="separator">
         <va-icon name="fa fa-address-book" color="info" rotation="45" size="60" fixedWidth />
@@ -73,91 +95,8 @@
         <va-input :label="$t('auth.email')" :value="pessoa.EMAILPARTICULAR" type="text" />
       </div>
     </div>
-    <div class="title text-dark mb-1" :style="{color: $themes.info}">
-      <div class="separator">
-        <va-icon name="fa fa-vcard" color="info" rotation="45" size="60" fixedWidth />
-        {{$t('forms.comum.documentacao')}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.cpf')" :value="pessoa.NU_CPF_ESTAGIARIO" type="text" />
-        <va-input
-          :label="$t('forms.comum.dataemissao')"
-          :value="pessoa.CIDDATA | formatDate"
-          type="text"
-        />
-        <va-input :label="$t('forms.comum.zonaeleitoral')" :value="pessoa.ZONTITEL" type="text" />
-        <va-input
-          :label="$t('forms.comum.dataexpiracao')"
-          :value="pessoa.DTVALIDADEPASS | formatDate"
-          type="text"
-        />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.pispasep')" :value="pessoa.PISPASEP" type="text" />
-        <va-input
-          :label="$t('forms.comum.orgaoexpedidorestado')"
-          :value="`${pessoa.CIDORGAO } - ${pessoa.CIDUNFED}`"
-          type="text"
-        />
-        <va-input :label="$t('forms.comum.secaoeleitoral')" :value="pessoa.SECTITEL" type="text" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.rg')" :value="pessoa.CIDNUME" type="text" />
-        <va-input :label="$t('forms.comum.tituloeleitor')" :value="pessoa.NUMTITEL" type="text" />
-        <va-input :label="$t('forms.comum.numeropassaporte')" :value="pessoa.NUMPASS" type="text" />
-      </div>
-    </div>
-    <div class="title text-dark mb-1" :style="{color: $themes.info}">
-      <div class="separator">
-        <va-icon name="fa fa-id-badge" color="info" rotation="45" size="60" fixedWidth />
-        {{$t('forms.comum.informacaocontrato')}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.identificador')" :value="pessoa.ID_ESTAGIARIO" type="text" />
-        <va-input
-          :label="$t('forms.comum.dataprimeiroemprego')"
-          :value="pessoa.DATPREMP | formatDate"
-          type="text"
-        />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.codigoafastamento')" :value="pessoa.AFASCODI" type="text" />
-        <va-input
-          :label="$t('forms.comum.datainicio')"
-          :value="pessoa.DT_INICIO_ESTAGIO_ATUAL | formatDate"
-          type="text"
-        />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.matriculasiap')" :value="pessoa.SP_MATRICA" type="text" />
-        <va-input
-          :label="$t('forms.comum.datatermino')"
-          :value="pessoa.DT_TERMINO_ESTAGIO_ATUAL | formatDate"
-          type="text"
-        />
-      </div>
-    </div>
-    <div class="title text-dark mb-1" :style="{color: $themes.info}">
-      <div class="separator">
-        <va-icon name="fa fa-money" color="info" rotation="45" size="60" fixedWidth />
-        {{$t('forms.comum.dadosbancarios')}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.banco')" :value="pessoa.BANCO" type="text" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.agencia')" :value="pessoa.AGENCIA" type="text" />
-      </div>
-      <div class="flex xs3 md4">
-        <va-input :label="$t('forms.comum.contacorrente')" :value="pessoa.CONTA" type="text" />
-      </div>
-    </div>
+    
+    
   </div>
 </template>
 <script>

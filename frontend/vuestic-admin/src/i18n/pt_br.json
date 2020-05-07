@@ -124,6 +124,7 @@
       "nacionalidade": "Nacionalidade",
       "documentacao": "Documentação",
       "tipocontrato": "Tipo de contrato",
+      "contrato": "Contrato",
       "datanascimento": "Data de nascimento",
       "naturalidade": "Naturalidade",
       "estado": "Estado",
@@ -218,7 +219,23 @@
       "eferefer": "Referencial Atual",
       "efedata": "Data Início Referência Atual",
       "nudepir": "Número Dependentes IR",
-      "nudepsf": "Número Dependentes SF"
+      "nudepsf": "Número Dependentes SF",
+      "cd_entidade_estagio": "Entidade do estágio",
+      "cd_escolaridade_estagiario": "Escolaridade",
+      "nu_jornada_estagio": "Jornada de estágio",
+      "matrsuperv": "Matrícula do supervisor",
+      "codcurso": "Curso",
+      "codinstensino": "Instituição de ensino",
+      "semestre_inicio_curso": "Semestre de início",
+      "ano_inicio_curso": "Ano de início",
+      "semestre_fim_curso": "Semestre de término",
+      "ano_fim_curso": "Ano de término",
+      "codmodbolsa": "Modalidade de bolsa",
+      "instpagbolsa": "Instituíção pagadora da bolsa",
+      "dataprorrogacao": "Data de prorrogação",
+      "data_encerramento_contrato": "Data encerramento do contrato",
+      "vertente": 1,
+      "numeroinep": "INEP"
     }
   },
   "grid": {
@@ -349,9 +366,11 @@
       "country": "País"
     },
     "searchInformacoesGeraisestagiario": "Pesquisa de informações gerais estagiário",
+    "searchInformacoesFuncionaisEstagiario": "Pesquisa de informações funcionais do estagiário",
     "searchByMatriculaNameCpf": "Procura por nome, matrícula ou CPF",
     "searchByNameCpf": "Procura por nome ou CPF",
-    "searchByMatricula": "Procura por matrícula"
+    "searchByMatricula": "Procura por matrícula",
+    "searchByCpf": "Procura por CPF"
   },
   "user": {
     "language": "Trocar Linguagem",
