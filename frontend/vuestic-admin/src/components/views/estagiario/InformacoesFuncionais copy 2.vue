@@ -38,42 +38,43 @@
                   <template slot="records" slot-scope="props">
                     <va-tree-root>
                       <va-tree-category :label="props.rowData.NU_CPF_ESTAGIARIO">
-                        <div class="row flex align--center offset--md4 offset--lg3">
-                          <div>
-                            <b>{{ $t('forms.comum.datainicio') }}</b>
-                          </div>
-                          <div>
-                            <b>{{ $t('forms.comum.datatermino') }}</b>
-                          </div>
-                          <div>
-                            <b>{{ $t('forms.comum.contrato') }}</b>
-                          </div>
-                          <div></div>
+                        <div class="va-layout gutter--md">
+                          <table>
+                            <thead>
+                              <tr class="va-row flex">
+                                <th>{{ $t('forms.comum.datainicio') }}</th>
+                                <th>{{ $t('forms.comum.datatermino') }}</th>
+                                <th>{{ $t('forms.comum.contrato') }}</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <va-tree-node
+                                v-for="(item, idx) in itemsKey(props.rowData.NU_CPF_ESTAGIARIO)"
+                                :key="idx"
+                              >
+                                <div class="va-row flex">
+                                  <div>{{item.DT_INICIO_ESTAGIO | formatDate}}</div>
+                                  <div>{{item.DT_TERMINO_ESTAGIO | formatDate}}</div>
+                                  <div>
+                                    <va-badge
+                                      :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
+                                    >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
+                                  </div>
+                                  <div>
+                                    <va-button
+                                      flat
+                                      small
+                                      color="gray"
+                                      icon="fa fa-info-circle"
+                                      @click="info(item)"
+                                    />
+                                  </div>
+                                </div>
+                              </va-tree-node>
+                            </tbody>
+                          </table>
                         </div>
-                        <va-tree-node
-                          v-for="(item, idx) in itemsKey(props.rowData.NU_CPF_ESTAGIARIO)"
-                          :key="idx"
-                        >
-                          <div class="row flex align--baseline offset--md4 offset--lg3">
-                            <div>{{item.DT_INICIO_ESTAGIO | formatDate}}</div>
-                            <div>{{item.DT_TERMINO_ESTAGIO | formatDate}}</div>
-                            <div>
-                              <va-badge
-                                :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
-                              >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
-                            </div>
-                            <div>
-                              <va-button
-                                flat
-                                small
-                                color="gray"
-                                icon="fa fa-info-circle"
-                                class="ml-2 pa-1 shrink"
-                                @click="info(item)"
-                              />
-                            </div>
-                          </div>
-                        </va-tree-node>
                       </va-tree-category>
                     </va-tree-root>
                   </template>
@@ -216,9 +217,6 @@ export default {
   .va-card__body--padding-top {
     padding-top: 0.5rem;
   }
-
-  .va-tree-category__list-container {
-    margin-top: 0.1rem;
-  }
 }
 </style>
+

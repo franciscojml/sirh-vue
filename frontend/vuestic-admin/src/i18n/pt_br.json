@@ -234,8 +234,10 @@
       "instpagbolsa": "Instituíção pagadora da bolsa",
       "dataprorrogacao": "Data de prorrogação",
       "data_encerramento_contrato": "Data encerramento do contrato",
-      "vertente": 1,
-      "numeroinep": "INEP"
+      "vertente": "Vertente de atuação",
+      "numeroinep": "INEP",
+      "dadosestagio": "Dados do estágio",
+      "formacaoacademica": "Formação academica"
     }
   },
   "grid": {
@@ -386,9 +388,6 @@
   },
   "chat": {
     "title": "Gráficos"
-  },
-  "chat": {
-    "title": "Chat"
   },
   "spacingPlayground": {
     "value": "Value",

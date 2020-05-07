@@ -375,8 +375,10 @@
       "instpagbolsa": "Scholarship paying institution",
       "dataprorrogacao": "Date of extension",
       "data_encerramento_contrato": "Contract end date",
-      "vertente": 1,
-      "numeroinep": "INEP"
+      "vertente": "Performance strand",
+      "numeroinep": "INEP",
+      "dadosestagio": "Internship data",
+      "formacaoacademica": "Academic training"
     }
   },
   "grid": {
