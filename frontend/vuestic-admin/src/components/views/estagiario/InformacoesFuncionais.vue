@@ -42,11 +42,8 @@
                           v-for="(item, idx) in itemsKey(props.rowData.NU_CPF_ESTAGIARIO)"
                           :key="idx"
                         >
-                          <div class="flex md6">
-                            <div
-                              class="row flex"
-                              v-show="`${isDivHeader(props.rowData.NU_CPF_ESTAGIARIO)}`"
-                            >
+                          <div class="flex sm6 md12">
+                            <div class="row flex" v-if="idx == 0">
                               <div style="width: 30%;">
                                 <b>{{ $t('forms.comum.datainicio') }}</b>
                               </div>
@@ -72,7 +69,6 @@
                                   small
                                   color="gray"
                                   icon="fa fa-info-circle"
-                                  class="ml-2 pa-1 shrink"
                                   @click="info(item)"
                                 />
                               </div>
