@@ -38,39 +38,44 @@
                   <template slot="records" slot-scope="props">
                     <va-tree-root>
                       <va-tree-category :label="props.rowData.NU_CPF_ESTAGIARIO">
-                        <div class="row flex align--center offset--md4 offset--lg3">
-                          <div>
-                            <b>{{ $t('forms.comum.datainicio') }}</b>
-                          </div>
-                          <div>
-                            <b>{{ $t('forms.comum.datatermino') }}</b>
-                          </div>
-                          <div>
-                            <b>{{ $t('forms.comum.contrato') }}</b>
-                          </div>
-                          <div></div>
-                        </div>
                         <va-tree-node
                           v-for="(item, idx) in itemsKey(props.rowData.NU_CPF_ESTAGIARIO)"
                           :key="idx"
                         >
-                          <div class="row flex align--baseline offset--md4 offset--lg3">
-                            <div>{{item.DT_INICIO_ESTAGIO | formatDate}}</div>
-                            <div>{{item.DT_TERMINO_ESTAGIO | formatDate}}</div>
-                            <div>
-                              <va-badge
-                                :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
-                              >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
+                          <div class="flex md6">
+                            <div
+                              class="row flex"
+                              v-show="`${isDivHeader(props.rowData.NU_CPF_ESTAGIARIO)}`"
+                            >
+                              <div style="width: 30%;">
+                                <b>{{ $t('forms.comum.datainicio') }}</b>
+                              </div>
+                              <div style="width: 30%;">
+                                <b>{{ $t('forms.comum.datatermino') }}</b>
+                              </div>
+                              <div style="width: 30%;">
+                                <b>{{ $t('forms.comum.contrato') }}</b>
+                              </div>
+                              <div style="width: 10%;"></div>
                             </div>
-                            <div>
-                              <va-button
-                                flat
-                                small
-                                color="gray"
-                                icon="fa fa-info-circle"
-                                class="ml-2 pa-1 shrink"
-                                @click="info(item)"
-                              />
+                            <div class="row flex">
+                              <div style="width: 30%;">{{item.DT_INICIO_ESTAGIO | formatDate}}</div>
+                              <div style="width: 30%;">{{item.DT_TERMINO_ESTAGIO | formatDate}}</div>
+                              <div style="width: 30%;">
+                                <va-badge
+                                  :color="getStatusColor(item.DATA_ENCERRAMENTO_CONTRATO)"
+                                >{{ item.DATA_ENCERRAMENTO_CONTRATO ? 'Encerrado' : 'Vigente' }}</va-badge>
+                              </div>
+                              <div style="width: 10%;">
+                                <va-button
+                                  flat
+                                  small
+                                  color="gray"
+                                  icon="fa fa-info-circle"
+                                  class="ml-2 pa-1 shrink"
+                                  @click="info(item)"
+                                />
+                              </div>
                             </div>
                           </div>
                         </va-tree-node>
@@ -126,7 +131,8 @@ export default {
       totalRecords: 0,
       pessoa: null,
       style12: true,
-      groupKeys: []
+      groupKeys: [],
+      cpfDiv: []
     };
   },
   computed: {
@@ -190,6 +196,14 @@ export default {
     },
     itemsKey(param) {
       return this.$_.where(this.items, { NU_CPF_ESTAGIARIO: param });
+    },
+    isDivHeader(param) {
+      if (!this.$_.contains(this.cpfDiv, param)) {
+        this.cpfDiv.push(param);
+        return true;
+      }
+
+      return false;
     }
   },
   created() {
