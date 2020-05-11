@@ -16,14 +16,9 @@
           :color="contextConfig.invertedColor ? $themes.gray : 'white'"
         />
 
-        <!--router-link class="app-navbar__logo mr-3" to="/">
-          <va-icon-vuestic  /-->
-          <img
-            src="img/images/logo_sirh_192x192.jpg"
-            class="app-navbar__logo mr-3"
-            style="width: 100%; height: auto; border-radius: 40em;"
-          />
-        <!--/router-link-->
+        <router-link class="app-navbar__logo mr-3" to="/">
+          <va-icon-vuestic  />
+        </router-link>
       </div>
       <div class="app-navbar__center lg5 md4"></div>
       <app-navbar-actions
