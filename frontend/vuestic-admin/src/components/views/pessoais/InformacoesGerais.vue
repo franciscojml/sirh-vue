@@ -46,10 +46,7 @@
                   </template>
                 </va-data-table>
                 <div class="flex xs10 md6">
-                  <va-card
-                    :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'"
-                    color="#34495e"
-                  >
+                  <va-card :class="style12 ? 'flex xs3 mb-6' : 'flex xs7 mb-6'" color="#34495e">
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
                     <p>{{$t('charts.totalRecords')}}</p>
                   </va-card>
