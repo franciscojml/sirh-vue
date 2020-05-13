@@ -1,56 +1,39 @@
 <template>
-  <div class="container">
-    <div class="d-flex justify-content-center h-100">
-      <div class="card">
-        <div class="card-header">
-          <h3>Sign In</h3>
-          <div class="d-flex justify-content-end social_icon">
-            <span>
-              <i class="fab fa-facebook-square"></i>
-            </span>
-            <span>
-              <i class="fab fa-google-plus-square"></i>
-            </span>
-            <span>
-              <i class="fab fa-twitter-square"></i>
-            </span>
-          </div>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-form-title" style="background-image: url(/login/images/bg-01.jpg);">
+          <span class="login100-form-title-1">Sign In</span>
         </div>
-        <div class="card-body">
-          <form>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fas fa-user"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="username" />
-            </div>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fas fa-key"></i>
-                </span>
-              </div>
-              <input type="password" class="form-control" placeholder="password" />
-            </div>
-            <div class="row align-items-center remember">
-              <input type="checkbox" />Remember Me
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Login" class="btn float-right login_btn" />
-            </div>
-          </form>
-        </div>
-        <div class="card-footer">
-          <div class="d-flex justify-content-center links">
-            Don't have an account?
-            <a href="#">Sign Up</a>
+
+        <form class="login100-form validate-form">
+          <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+            <span class="label-input100">Username</span>
+            <input class="input100" type="text" name="username" placeholder="Enter username" />
+            <span class="focus-input100"></span>
           </div>
-          <div class="d-flex justify-content-center">
-            <a href="#">Forgot your password?</a>
+
+          <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+            <span class="label-input100">Password</span>
+            <input class="input100" type="password" name="pass" placeholder="Enter password" />
+            <span class="focus-input100"></span>
           </div>
-        </div>
+
+          <div class="flex-sb-m w-full p-b-30">
+            <div class="contact100-form-checkbox">
+              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
+              <label class="label-checkbox100" for="ckb1">Remember me</label>
+            </div>
+
+            <div>
+              <a href="#" class="txt1">Forgot Password?</a>
+            </div>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn">Login</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -69,88 +52,14 @@ export default {
 </script>
 
 <style lang="scss">
-html,
-body {
-  background-image: url("/img/images/fundo_login.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  font-family: "Numans", sans-serif;
-}
-
-.container {
-  height: 100%;
-  align-content: center;
-}
-
-.card {
-  height: 370px;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 400px;
-  background-color: rgba(0, 0, 0, 0.5) !important;
-}
-
-.social_icon span {
-  font-size: 60px;
-  margin-left: 10px;
-  color: #ffc312;
-}
-
-.social_icon span:hover {
-  color: white;
-  cursor: pointer;
-}
-
-.card-header h3 {
-  color: white;
-}
-
-.social_icon {
-  position: absolute;
-  right: 20px;
-  top: -45px;
-}
-
-.input-group-prepend span {
-  width: 50px;
-  background-color: #ffc312;
-  color: black;
-  border: 0 !important;
-}
-
-input:focus {
-  outline: 0 0 0 0 !important;
-  box-shadow: 0 0 0 0 !important;
-}
-
-.remember {
-  color: white;
-}
-
-.remember input {
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
-  margin-right: 5px;
-}
-
-.login_btn {
-  color: black;
-  background-color: #ffc312;
-  width: 100px;
-}
-
-.login_btn:hover {
-  color: black;
-  background-color: white;
-}
-
-.links {
-  color: white;
-}
-
-.links a {
-  margin-left: 4px;
-}
+@import "/login/vendor/bootstrap/css/bootstrap.min.css";
+@import "/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
+@import "/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css";
+@import "/login/vendor/animate/animate.css";
+@import "/login/vendor/css-hamburgers/hamburgers.min.css";
+@import "/login/vendor/animsition/css/animsition.min.css";
+@import "/login/vendor/select2/select2.min.css";
+@import "/login/vendor/daterangepicker/daterangepicker.css";
+@import "/login/css/util.css";
+@import "/login/css/main.css";
 </style>
