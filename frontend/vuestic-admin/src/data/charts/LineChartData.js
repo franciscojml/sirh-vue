@@ -6,7 +6,7 @@ const generateValue = () => {
 
 const generateYLabels = () => {
   const flip = !!Math.floor(Math.random() * 2)
-  return flip ? ['Debit', 'Credit'] : ['Credit', 'Debit']
+  return flip ? ['Replicados', 'Pendentes'] : ['Pendentes', 'Replicados']
 }
 
 const generateArray = (length) => {
@@ -23,7 +23,7 @@ let firstMonthIndex = 0
 
 export const getLineChartData = (themes, firstMonth) => {
   const size = getSize()
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   const yLabels = generateYLabels()
 
   if (generatedData) {

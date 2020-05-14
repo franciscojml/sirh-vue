@@ -25,7 +25,7 @@ export default new Router({
         {
           name: 'login',
           path: 'login',
-          component: () => import('../components/auth/login/Login.vue'),
+          component: () => import('../components/auth/AuthLayout.vue'),
         },
         {
           path: '',

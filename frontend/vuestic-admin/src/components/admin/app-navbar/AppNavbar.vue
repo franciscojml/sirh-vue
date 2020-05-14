@@ -17,8 +17,8 @@
         />
 
         <router-link class="app-navbar__logo mr-3" to="/">
-          <va-icon-vuestic  />
-          <!--img src="/img/images/logo-sirh-erp.svg"/-->
+          <!--va-icon-vuestic  /-->
+          <img src="/img/images/logo-sirh-erp.svg"/>
         </router-link>
       </div>
       <div class="app-navbar__center lg5 md4"></div>

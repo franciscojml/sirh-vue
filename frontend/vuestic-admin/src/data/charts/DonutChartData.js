@@ -5,11 +5,11 @@ export const getDonutChartData = (themes) => {
     generatedData.datasets[0].backgroundColor = [themes.danger, themes.info, themes.primary]
   } else {
     generatedData = {
-      labels: ['North America', 'South America', 'Australia'],
+      labels: ['Empregados', 'Estagiários'],
       datasets: [{
         label: 'Population (millions)',
         backgroundColor: [themes.danger, themes.info, themes.primary],
-        data: [2478, 5267, 734],
+        data: [9500, 2478],
       }],
     }
   }

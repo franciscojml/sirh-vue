@@ -5,20 +5,43 @@
         <div class="login100-form-title" style="background-image: url(/login/images/bg-01.jpg);">
           <span class="login100-form-title-1">Sign In</span>
         </div>
-
-        <form class="login100-form validate-form">
-          <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-            <span class="label-input100">Username</span>
-            <input class="input100" type="text" name="username" placeholder="Enter username" />
+        <form @submit.prevent="onsubmit" class="login100-form">
+          <div>
+            <va-modal
+              v-model="validatingAuth"
+              :title=" $t('tables.loading') "
+              noOutsideDismiss
+              noEscDismiss
+              hideDefaultActions
+              size="small"
+            >
+              <Loading />
+            </va-modal>
+          </div>
+          <div class="wrap-input100 m-b-26">
+            <span class="label-input100">{{$t('auth.username')}}</span>
+            <va-input
+              v-model="user.username"
+              type="text"
+              :error="!!usernameErrors.length"
+              :error-messages="usernameErrors"
+              class="input100"
+              placeholder="Enter username"
+            />
             <span class="focus-input100"></span>
           </div>
-
-          <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-            <span class="label-input100">Password</span>
-            <input class="input100" type="password" name="pass" placeholder="Enter password" />
+          <div class="wrap-input100 m-b-18">
+            <span class="label-input100">{{$t('auth.password')}}</span>
+            <va-input
+              v-model="user.password"
+              type="password"
+              :error="!!passwordErrors.length"
+              :error-messages="passwordErrors"
+              class="input100"
+              placeholder="Enter password"
+            />
             <span class="focus-input100"></span>
           </div>
-
           <div class="flex-sb-m w-full p-b-30">
             <div class="contact100-form-checkbox">
               <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
@@ -31,7 +54,7 @@
           </div>
 
           <div class="container-login100-form-btn">
-            <button class="login100-form-btn">Login</button>
+            <va-button type="submit" class="login100-form-btn">{{ $t('auth.login') }}</va-button>
           </div>
         </form>
       </div>
@@ -40,13 +63,64 @@
 </template>
 
 <script>
+import { baseApiUrl, userKey } from "@/global";
+import axios from "axios";
+import Loading from "@/components/ui/spinners/Loading";
+
 export default {
   name: "AuthLayout",
+  components: { Loading },
   data() {
     return {
-      selectedTabIndex: 0,
-      tabTitles: ["login"]
+      validatingAuth: false,
+      usernameErrors: [],
+      passwordErrors: [],
+      user: {},
+      toastText: "",
+      toastDuration: 3000,
+      toastIcon: "exclamation-circle",
+      toastPosition: "top-center",
+      isToastFullWidth: false
     };
+  },
+  computed: {
+    formReady() {
+      return !this.usernameErrors.length && !this.passwordErrors.length;
+    },
+    isToastContentPresent() {
+      return !!(this.toastText || this.toastIcon);
+    }
+  },
+  methods: {
+    async onsubmit() {
+      this.usernameErrors = this.user.username ? [] : ["Username is required"];
+      this.passwordErrors = this.user.password ? [] : ["Password is required"];
+      if (!this.formReady) {
+        return;
+      }
+      this.validatingAuth = true;
+      await axios
+        .post(`${baseApiUrl}/login`, this.user)
+        .then(res => {
+          this.$store.commit("setUser", res.data);
+          localStorage.setItem(userKey, JSON.stringify(res.data));
+          this.$router.push({ name: "dashboard" });
+        })
+        .catch(error => {
+          this.toastText = error.data.message;
+          this.launchToast();
+        });
+
+      this.validatingAuth = false;
+    },
+    launchToast() {
+      this.showToast(this.toastText, {
+        icon: this.toastIcon,
+        position: this.toastPosition,
+        duration: this.toastDuration,
+        fullWidth: this.isToastFullWidth
+      });
+    }
   }
 };
 </script>

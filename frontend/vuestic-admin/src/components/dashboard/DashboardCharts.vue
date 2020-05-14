@@ -1,7 +1,7 @@
 <template>
   <div class="row row-equal">
     <div class="flex xs12 xl6">
-      <va-card :title="$t('dashboard.charts.trendyTrends')">
+      <va-card title="Registros replicados">
         <va-button
           small
           slot="actions"
@@ -10,14 +10,14 @@
           @click="deleteSection"
           :disabled="lineChartData.labels.length < 2"
         >
-          {{ $t('dashboard.charts.showInMoreDetail') }}
+          Maiores detalhes
         </va-button>
         <va-chart class="chart" ref="lineChart" :data="lineChartData" type="line"/>
       </va-card>
     </div>
 
     <div class="flex xs12 md6 xl3">
-      <va-card :title="$t('dashboard.charts.loadingSpeed')">
+      <va-card title="Relação Empregados x Estagiários">
         <va-button
           icon="fa fa-print"
           flat
@@ -27,10 +27,6 @@
         />
         <va-chart class="chart chart--donut" :data="donutChartData" type="donut"/>
       </va-card>
-    </div>
-
-    <div class="flex xs12 md6 xl3">
-      <dashboard-contributors-chart/>
     </div>
   </div>
 </template>

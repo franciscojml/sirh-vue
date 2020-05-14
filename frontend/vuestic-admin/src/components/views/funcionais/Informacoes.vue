@@ -51,7 +51,7 @@
                     color="#34495e"
                   >
                     <p class="display-6 xs10 mb-0" style="color: white;">{{ totalRecords }}</p>
-                    <p>{{$t('charts.totalRecords')}}</p>
+                    <p style="color: white;">{{$t('charts.totalRecords')}}</p>
                   </va-card>
                 </div>
               </va-card>
