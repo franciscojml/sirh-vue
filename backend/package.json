@@ -13,7 +13,7 @@
   "dependencies": {
     "activedirectory": "^0.7.2",
     "algorithmia": "^0.3.10",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "body-parser": "1.18.3",
     "consign": "0.1.6",
     "cors": "2.8.4",
